@@ -41,4 +41,65 @@ public class Repository {
         mUserDAO=db.userDAO();
     }
 
+    //Inserting starting data into database
+
+    public void insert(User user){
+        databaseExecutor.execute(()->{
+            mUserDAO.insert(user);
+        });
+        try{
+            Thread.sleep(1000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void insert(Instructor instructor){
+        databaseExecutor.execute(()->{
+            mInstructorDAO.insert(instructor);
+        });
+        try{
+            Thread.sleep(1000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void insert(Term term){
+        databaseExecutor.execute(()->{
+            mTermDAO.insert(term);
+        });
+        try{
+            Thread.sleep(1000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void insert(Course course){
+        databaseExecutor.execute(()->{
+            mCourseDAO.insert(course);
+        });
+        try{
+            Thread.sleep(1000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void insert(Assessment assessment){
+        databaseExecutor.execute(()->{
+            mAssessmentDAO.insert(assessment);
+        });
+        try{
+            Thread.sleep(1000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+
+    }
 }
