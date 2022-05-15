@@ -41,6 +41,19 @@ public class Repository {
         mUserDAO=db.userDAO();
     }
 
+    public List<Term>getAllTerms(){
+        databaseExecutor.execute(()->{
+            mAllTerms=mTermDAO.getAllTerms();
+        });
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return mAllTerms;
+    }
+
     //Inserting starting data into database
 
     public void insert(User user){

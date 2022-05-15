@@ -1,6 +1,8 @@
 package clinton.woody.android.termtracker.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +10,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.List;
+
+import clinton.woody.android.termtracker.DAO.TermDAO;
+import clinton.woody.android.termtracker.Database.Repository;
+import clinton.woody.android.termtracker.Entity.Term;
 import clinton.woody.android.termtracker.R;
 
 public class TermActivity extends AppCompatActivity {
@@ -16,6 +23,15 @@ public class TermActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
+        RecyclerView recyclerView=findViewById(R.id.recyclerview_term);
+        Repository repo=new Repository(getApplication());
+        List<Term> terms= repo.getAllTerms();
+        final TermAdapter adapter=new TermAdapter(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter.setTerms(terms);
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_term, menu);
