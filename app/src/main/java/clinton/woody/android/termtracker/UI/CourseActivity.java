@@ -53,7 +53,7 @@ public class CourseActivity extends AppCompatActivity {
     }
 
     public void toDetailedCourse(View view) {
-        Intent intent=new Intent(CourseActivity.this,DetailedTermActivity.class);
+        Intent intent=new Intent(CourseActivity.this,DetailedCourseActivity.class);
         startActivity(intent);
     }
 }

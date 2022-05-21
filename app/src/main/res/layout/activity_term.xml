@@ -6,23 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".UI.TermActivity">
 
-    //This button not needed
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:onClick="toCourse"
-        android:text="Course"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
-
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:onClick="toDetailedCourse"
+        android:onClick="toDetailedTerm"
         android:text="Detail"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
