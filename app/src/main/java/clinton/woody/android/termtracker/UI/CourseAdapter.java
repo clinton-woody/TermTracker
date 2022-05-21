@@ -1,5 +1,8 @@
 package clinton.woody.android.termtracker.UI;
 
+import android.content.Context;
+import android.content.Intent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -7,6 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
+import clinton.woody.android.termtracker.Entity.Course;
+import clinton.woody.android.termtracker.Entity.Term;
 import clinton.woody.android.termtracker.R;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {
@@ -15,21 +22,61 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         private CourseViewHolder(View itemView){
             super(itemView);
             courseItemView=itemView.findViewById(R.id.textView2);
+            itemView.setOnClickListener(new View.OnClickListener(){
+
+                @Override
+                public void onClick(View view) {
+                    int position=getAdapterPosition();
+                    final Course current=mCourse.get(position);
+                    Intent intent = new Intent(context, AssessmentActivity.class);//use to be TermList.class
+                    intent.putExtra("id", current.getCourseID());
+                    intent.putExtra("title", current.getTitle());
+                    intent.putExtra( "start", current.getStart());
+                    intent.putExtra( "end", current.getEnd());
+                    intent.putExtra( "status", current.getStatus());
+                    context.startActivity(intent);
+                }
+            });
         }
+    }
+    private List<Course> mCourse;
+    private final Context context;
+    private final LayoutInflater mInflater;
+    public CourseAdapter(Context context){
+        mInflater=LayoutInflater.from(context);
+        this.context=context;
     }
     @NonNull
     @Override
     public CourseAdapter.CourseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View itemView=mInflater.inflate(R.layout.course_item,parent, false);
+        return new CourseAdapter.CourseViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CourseAdapter.CourseViewHolder holder, int position) {
+        if(mCourse!=null){
+            Course current=mCourse.get(position);
+            String title=current.getTitle();
+            holder.courseItemView.setText(title);
+        }
+        else{
+            holder.courseItemView.setText("No Course Title");
+        }
 
+    }
+    public void setCourses(List<Course> course) {
+        mCourse=course;
+        notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        if(mCourse!=null){
+            return mCourse.size();
+        }
+        else
+            return 0;
+
     }
 }

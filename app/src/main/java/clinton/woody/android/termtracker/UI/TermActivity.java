@@ -52,7 +52,7 @@ public class TermActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void toDetailedCourse(View view) {
+    public void toDetailedTerm(View view) {
         Intent intent=new Intent(TermActivity.this,DetailedTermActivity.class);
         startActivity(intent);
     }
