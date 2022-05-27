@@ -23,5 +23,5 @@ public interface UserDAO {
     void delete(User user);
 
     @Query("SELECT * FROM users ORDER BY userID ASC")
-    List<User> detAllUsers();
+    List<User> getAllUsers();
 }

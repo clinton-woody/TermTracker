@@ -23,16 +23,6 @@ public class User {
         return userID;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "userID=" + userID +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", admin=" + admin +
-                '}';
-    }
-
     public void setUserID(int userID) {
         this.userID = userID;
     }

@@ -16,17 +16,23 @@ import clinton.woody.android.termtracker.Entity.Term;
 import clinton.woody.android.termtracker.R;
 
 public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder> {
+
+
     class TermViewHolder extends RecyclerView.ViewHolder{
-        private final TextView termItemView;
+        private final TextView termItemView1;
+        private final TextView termItemView2;
         private TermViewHolder(View itemView){
+
             super(itemView);
-            termItemView=itemView.findViewById(R.id.textView);
+            termItemView1=itemView.findViewById(R.id.textViewTerm1);
+            termItemView2=itemView.findViewById(R.id.textViewTerm2);
             itemView.setOnClickListener(new View.OnClickListener(){
 
                 @Override
                 public void onClick(View view) {
                     int position=getAdapterPosition();
                     final Term current=mTerms.get(position);
+                    Term.selectedTerm=current.getTermID();
                     Intent intent = new Intent(context, CourseActivity.class);//use to be TermList.class
                     intent.putExtra("id", current.getTermID());
                     intent.putExtra("title", current.getTitle());
@@ -57,10 +63,13 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
         if(mTerms!=null){
             Term current=mTerms.get(position);
             String title=current.getTitle();
-            holder.termItemView.setText(title);
+            holder.termItemView1.setText(title);
+            String status=current.getStatus();
+            holder.termItemView2.setText(status);
         }
         else{
-            holder.termItemView.setText("No Term Title");
+            holder.termItemView1.setText("No Term Title");
+            holder.termItemView2.setText("No Term Status");
         }
 
     }
@@ -71,11 +80,7 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
 
     @Override
     public int getItemCount() {
-        if(mTerms!=null){
-            return mTerms.size();
-        }
-        else
-            return 0;
-
+        return mTerms.size();
     }
+
 }

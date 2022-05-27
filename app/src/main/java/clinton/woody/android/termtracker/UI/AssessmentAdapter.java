@@ -17,11 +17,15 @@ import clinton.woody.android.termtracker.Entity.Term;
 import clinton.woody.android.termtracker.R;
 
 public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.AssessmentViewHolder> {
+
+
     class AssessmentViewHolder extends RecyclerView.ViewHolder{
-        private final TextView assessmentItemView;
+        private final TextView assessmentItemView1;
+        private final TextView assessmentItemView2;
         private AssessmentViewHolder(View itemView){
             super(itemView);
-            assessmentItemView=itemView.findViewById(R.id.textView3);
+            assessmentItemView1=itemView.findViewById(R.id.textViewAssessment1);
+            assessmentItemView2=itemView.findViewById(R.id.textViewAssessment2);
         }
     }
     private List<Assessment> mAssessment;
@@ -43,10 +47,13 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
         if(mAssessment!=null){
             Assessment current=mAssessment.get(position);
             String title=current.getTitle();
-            holder.assessmentItemView.setText(title);
+            holder.assessmentItemView1.setText(title);
+            String status=current.getStatus();
+            holder.assessmentItemView2.setText(status);
         }
         else{
-            holder.assessmentItemView.setText("No Assessment Title");
+            holder.assessmentItemView1.setText("No Assessment Title");
+            holder.assessmentItemView2.setText("No Assessment Status");
         }
 
     }

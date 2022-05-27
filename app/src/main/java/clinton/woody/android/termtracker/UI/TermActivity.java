@@ -18,6 +18,8 @@ import clinton.woody.android.termtracker.Entity.Term;
 import clinton.woody.android.termtracker.R;
 
 public class TermActivity extends AppCompatActivity {
+    private Repository repository;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,13 +27,13 @@ public class TermActivity extends AppCompatActivity {
         setContentView(R.layout.activity_term);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
+        repository=new Repository(getApplication());
+        List<Term> allTerms= repository.getAllTerms();
         RecyclerView recyclerView=findViewById(R.id.recyclerview_term);
-        Repository repo=new Repository(getApplication());
-        List<Term> terms= repo.getAllTerms();
-        final TermAdapter adapter=new TermAdapter(this);
-        recyclerView.setAdapter(adapter);
+        final TermAdapter termAdapter=new TermAdapter(this);
+        recyclerView.setAdapter(termAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter.setTerms(terms);
+        termAdapter.setTerms(allTerms);
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_term, menu);
@@ -43,17 +45,19 @@ public class TermActivity extends AppCompatActivity {
             case android.R.id.home:
                 this.finish();
                 return true;
+            case R.id.termrefresh:
+                repository=new Repository(getApplication());
+                List<Term> allTerms=repository.getAllTerms();
+                RecyclerView recyclerView=findViewById(R.id.recyclerview_term);
+                final TermAdapter termAdapter=new TermAdapter(this);
+                recyclerView.setAdapter(termAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                termAdapter.setTerms(allTerms);
         }
         return super.onOptionsItemSelected(item);
     }
-
     public void toCourse(View view) {
         Intent intent=new Intent(TermActivity.this,CourseActivity.class);
-        startActivity(intent);
-    }
-
-    public void toDetailedTerm(View view) {
-        Intent intent=new Intent(TermActivity.this,DetailedTermActivity.class);
         startActivity(intent);
     }
 }

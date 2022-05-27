@@ -17,6 +17,8 @@ public class Term {
     private String end; //Will need formatter
     private String status;
 
+    public static int selectedTerm = -1;//This worked
+
     public Term(int termID, int userID, String title, String start, String end, String status) {
         this.termID = termID;
         this.userID = userID;
@@ -24,18 +26,6 @@ public class Term {
         this.start = start;
         this.end = end;
         this.status = status;
-    }
-
-    @Override
-    public String toString() {
-        return "Term{" +
-                "termID=" + termID +
-                ", userID=" + userID +
-                ", title='" + title + '\'' +
-                ", start=" + start +
-                ", end=" + end +
-                ", status='" + status + '\'' +
-                '}';
     }
 
     public int getTermID() {

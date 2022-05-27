@@ -23,5 +23,5 @@ public interface InstructorDAO {
     void delete(Instructor instructor);
 
     @Query("SELECT * FROM instructors ORDER BY instructorID ASC")
-    List<Instructor> detAllInstructors();
+    List<Instructor> getAllInstructors();
 }

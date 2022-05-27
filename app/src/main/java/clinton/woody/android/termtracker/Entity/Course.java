@@ -17,6 +17,8 @@ public class Course {
     private int instructorID;
     private String status;
 
+    public static int selectedCourse = -1;
+
     public Course(int courseID, int termID, String title, String start, String end, int instructorID, String status) {
         this.courseID = courseID;
         this.termID = termID;
@@ -25,19 +27,6 @@ public class Course {
         this.end = end;
         this.instructorID = instructorID;
         this.status = status;
-    }
-
-    @Override
-    public String toString() {
-        return "Course{" +
-                "courseID=" + courseID +
-                ", termID=" + termID +
-                ", title='" + title + '\'' +
-                ", start=" + start +
-                ", end=" + end +
-                ", instructorID=" + instructorID +
-                ", status='" + status + '\'' +
-                '}';
     }
 
     public int getCourseID() {

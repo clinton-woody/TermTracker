@@ -24,6 +24,7 @@ public abstract class TermDatabaseBuilder extends RoomDatabase {
     public abstract InstructorDAO instructorDAO();
     public abstract TermDAO termDAO();
     public abstract UserDAO userDAO();
+
     private static volatile TermDatabaseBuilder INSTANCE;
 
     static TermDatabaseBuilder getDatabase(final Context context) {

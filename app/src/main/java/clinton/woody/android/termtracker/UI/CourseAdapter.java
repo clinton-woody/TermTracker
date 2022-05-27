@@ -17,17 +17,20 @@ import clinton.woody.android.termtracker.Entity.Term;
 import clinton.woody.android.termtracker.R;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {
+
     class CourseViewHolder extends RecyclerView.ViewHolder{
-        private final TextView courseItemView;
+        private final TextView courseItemView1;
+        private final TextView courseItemView2;
         private CourseViewHolder(View itemView){
             super(itemView);
-            courseItemView=itemView.findViewById(R.id.textView2);
+            courseItemView1=itemView.findViewById(R.id.textViewCourse1);
+            courseItemView2=itemView.findViewById(R.id.textViewCourse2);
             itemView.setOnClickListener(new View.OnClickListener(){
-
                 @Override
                 public void onClick(View view) {
                     int position=getAdapterPosition();
                     final Course current=mCourse.get(position);
+                    Course.selectedCourse=current.getCourseID();
                     Intent intent = new Intent(context, AssessmentActivity.class);//use to be TermList.class
                     intent.putExtra("id", current.getCourseID());
                     intent.putExtra("title", current.getTitle());
@@ -58,10 +61,13 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         if(mCourse!=null){
             Course current=mCourse.get(position);
             String title=current.getTitle();
-            holder.courseItemView.setText(title);
+            holder.courseItemView1.setText(title);
+            String status=current.getStatus();
+            holder.courseItemView2.setText(status);
         }
         else{
-            holder.courseItemView.setText("No Course Title");
+            holder.courseItemView1.setText("No Course Title");
+            holder.courseItemView2.setText("No Term Status");
         }
 
     }
@@ -72,11 +78,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
     @Override
     public int getItemCount() {
-        if(mCourse!=null){
             return mCourse.size();
-        }
-        else
-            return 0;
-
     }
 }

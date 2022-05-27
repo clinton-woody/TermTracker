@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import clinton.woody.android.termtracker.Database.Repository;
@@ -18,21 +19,29 @@ import clinton.woody.android.termtracker.Entity.Term;
 import clinton.woody.android.termtracker.R;
 
 public class CourseActivity extends AppCompatActivity {
+    Repository repository;
+    int termID;
+    Term currentTerm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_course);
+        super.onCreate(savedInstanceState);//
+        setContentView(R.layout.activity_course);//
+        termID = Term.selectedTerm;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         RecyclerView recyclerView=findViewById(R.id.recyclerview_course);
-        Repository repo=new Repository(getApplication());
-        List<Course> courses=repo.getAllCourses();
+        repository=new Repository(getApplication());
         final CourseAdapter adapter=new CourseAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter.setCourses(courses);
+        List<Course> filteredCourses=new ArrayList<>();
+        for (Course c:repository.getAllCourses()){
+            if(c.getTermID()==termID)filteredCourses.add(c);
+        }
+        adapter.setCourses(filteredCourses);
     }
+
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_course, menu);
         return true;

@@ -19,16 +19,6 @@ public class Instructor {
         this.email = email;
     }
 
-    @Override
-    public String toString() {
-        return "Instructor{" +
-                "instructorID=" + instructorID +
-                ", name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                '}';
-    }
-
     public int getInstructorID() {
         return instructorID;
     }

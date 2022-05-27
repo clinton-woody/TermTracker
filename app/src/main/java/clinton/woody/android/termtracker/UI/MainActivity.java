@@ -15,37 +15,40 @@ import clinton.woody.android.termtracker.Entity.User;
 import clinton.woody.android.termtracker.R;
 
 public class MainActivity extends AppCompatActivity {
-
+    public static int alertNumber;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //change
     }
 
     public void toTerm(View view) {
         Intent intent = new Intent(MainActivity.this, TermActivity.class);
         startActivity(intent);
         Repository repo=new Repository(getApplication());
-        Term term1=new Term(1, 1, "testTerm1", "01June2021", "01June2021", "Started");
-        Term term2=new Term(2, 1, "testTerm2", "01June2021", "01June2021", "Started");
-        Course course1=new Course( 1, 1, "testCourse", "01June2021", "1June2021", 1, "Started" );
-        Assessment assessment1=new Assessment( 1, 1, "testAssessment", "01June2021", "01June2021", "Objective", "Scheduled");
-        User user1=new User(1, "usrTest", "usrTest", false);
-        User user2=new User(2, "admTest", "admTest", true);
-        Instructor instructor1=new Instructor(1, "instructor1", "555-123-4567", "instructor1@school.edu" );
-        Instructor instructor2=new Instructor(2, "instructor2", "555-123-8901", "instructor2@school.edu" );
-        repo.insert(term1);
-        repo.insert(term2);
-        repo.insert(course1);
-        repo.insert(assessment1);
-        repo.insert(user1);
-        repo.insert(user2);
-        repo.insert(instructor1);
-        repo.insert(instructor2);
+        Term term1=new Term(1, 1, "testTerm1", "01June2021", "01June2021", "Started");//not needed
+        Term term2=new Term(2, 1, "testTerm2", "01June2021", "01June2021", "Started");//not needed
+        Course course1=new Course( 1, 1, "testCourse", "01June2021", "1June2021", 1, "Started" );//not needed
+        Assessment assessment1=new Assessment( 1, 1, "testAssessment", "01June2021", "01June2021", "Objective", "Scheduled");//not needed
+        User user1=new User(1, "usrTest", "usrTest", false);//needed
+        User user2=new User(2, "admTest", "admTest", true);//needed
+        Instructor instructor1=new Instructor(1, "instructor1", "555-123-4567", "instructor1@school.edu" );//needed
+        Instructor instructor2=new Instructor(2, "instructor2", "555-123-8901", "instructor2@school.edu" );//needed
+        repo.insert(term1);//not needed
+        repo.insert(term2);//not needed
+        repo.insert(course1);//not needed
+        repo.insert(assessment1);//not needed
+        repo.insert(user1);//needed
+        repo.insert(user2);//needed
+        repo.insert(instructor1);//needed
+        repo.insert(instructor2);//needed
 
     }
 }
 //Scope: Mobile App Dev with some changes for Capstone
 //Parent: None
 //Child: TermActivity, LoginActivity
+
+/*
+Maybe change this to create and load the DB on creation instead of onClick to TermActivity.
+ */

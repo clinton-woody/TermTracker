@@ -27,19 +27,6 @@ public class Assessment {
         this.status = status;
     }
 
-    @Override
-    public String toString() {
-        return "Assessment{" +
-                "assessmentID=" + assessmentID +
-                ", courseID=" + courseID +
-                ", title='" + title + '\'' +
-                ", start=" + start +
-                ", end=" + end +
-                ", type='" + type + '\'' +
-                ", status='" + status + '\'' +
-                '}';
-    }
-
     public int getAssessmentID() {
         return assessmentID;
     }

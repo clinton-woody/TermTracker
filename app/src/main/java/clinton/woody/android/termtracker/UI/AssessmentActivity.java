@@ -14,15 +14,20 @@ import java.util.List;
 
 import clinton.woody.android.termtracker.Database.Repository;
 import clinton.woody.android.termtracker.Entity.Assessment;
+import clinton.woody.android.termtracker.Entity.Course;
 import clinton.woody.android.termtracker.Entity.Term;
 import clinton.woody.android.termtracker.R;
 
 public class AssessmentActivity extends AppCompatActivity {
+    Repository repository;
+    int courseID;
+    Course currentCourse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assessment);
+        courseID = Course.selectedCourse;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         RecyclerView recyclerView=findViewById(R.id.recyclerview_assessment);
