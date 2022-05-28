@@ -48,6 +48,9 @@ public class AssessmentActivity extends AppCompatActivity {
             case android.R.id.home:
                 this.finish();
                 return true;
+            case R.id.detailedAssessment:
+                Intent intent=new Intent(AssessmentActivity.this,DetailedAssessmentActivity.class);
+                startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

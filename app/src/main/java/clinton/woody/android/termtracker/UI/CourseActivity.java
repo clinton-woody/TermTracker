@@ -52,6 +52,9 @@ public class CourseActivity extends AppCompatActivity {
             case android.R.id.home:
                 this.finish();
                 return true;
+            case R.id.detailedCourse:
+                Intent intent=new Intent(CourseActivity.this,DetailedCourseActivity.class);
+                startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

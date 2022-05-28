@@ -5,4 +5,8 @@
         android:orderInCategory="100"
         android:id="@+id/termrefresh"/>
 
+    <item android:title="Detailed Term Screen"
+        android:orderInCategory="100"
+        android:id="@+id/detailedTerm"/>
+
 </menu>

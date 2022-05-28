@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,6 +47,9 @@ public class TermActivity extends AppCompatActivity {
             case android.R.id.home:
                 this.finish();
                 return true;
+            case R.id.detailedTerm:
+                Intent intent=new Intent(TermActivity.this,DetailedTermActivity.class);
+                startActivity(intent);
             case R.id.termrefresh:
                 repository=new Repository(getApplication());
                 List<Term> allTerms=repository.getAllTerms();
@@ -58,6 +63,11 @@ public class TermActivity extends AppCompatActivity {
     }
     public void toCourse(View view) {
         Intent intent=new Intent(TermActivity.this,CourseActivity.class);
+        startActivity(intent);
+    }
+
+    public void toDetailedTerm(View view) {
+        Intent intent=new Intent(TermActivity.this,DetailedTermActivity.class);
         startActivity(intent);
     }
 }

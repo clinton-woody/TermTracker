@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".UI.CourseActivity">
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:onClick="toDetailedCourse"
-        android:text="Detail"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id='@+id/recyclerview_course'
         android:layout_width="409dp"

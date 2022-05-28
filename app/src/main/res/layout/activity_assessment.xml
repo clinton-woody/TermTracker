@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".UI.AssessmentActivity">
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:onClick="toDetailedAssessment"
-        android:text="Detail"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id='@+id/recyclerview_assessment'
         android:layout_width="409dp"
