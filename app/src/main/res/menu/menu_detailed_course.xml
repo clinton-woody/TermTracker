@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item android:title="Update Course"
+        android:orderInCategory="100"
+        android:id="@+id/updateCourse"/>
+
+    <item android:title="Delete Course"
+        android:orderInCategory="100"
+        android:id="@+id/deleteCourse"/>
 
 </menu>

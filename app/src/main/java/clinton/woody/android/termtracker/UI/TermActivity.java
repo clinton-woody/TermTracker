@@ -50,14 +50,6 @@ public class TermActivity extends AppCompatActivity {
             case R.id.detailedTerm:
                 Intent intent=new Intent(TermActivity.this,DetailedTermActivity.class);
                 startActivity(intent);
-            case R.id.termrefresh:
-                repository=new Repository(getApplication());
-                List<Term> allTerms=repository.getAllTerms();
-                RecyclerView recyclerView=findViewById(R.id.recyclerview_term);
-                final TermAdapter termAdapter=new TermAdapter(this);
-                recyclerView.setAdapter(termAdapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(this));
-                termAdapter.setTerms(allTerms);
         }
         return super.onOptionsItemSelected(item);
     }
