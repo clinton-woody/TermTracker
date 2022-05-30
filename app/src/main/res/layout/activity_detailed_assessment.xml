@@ -30,24 +30,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Assessment ID" />
-
-                <Spinner
-                    android:id="@+id/assessmentID"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="Assessment Title" />
 
                 <EditText
@@ -65,7 +47,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Start Date/Time" />
+                    android:text="Start Date" />
 
                 <EditText
                     android:id="@+id/assessmentStart"
@@ -82,7 +64,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="End Date/Time" />
+                    android:text="End Date" />
 
                 <EditText
                     android:id="@+id/assessmentEnd"
