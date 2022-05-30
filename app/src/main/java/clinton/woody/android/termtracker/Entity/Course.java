@@ -1,5 +1,6 @@
 package clinton.woody.android.termtracker.Entity;
 
+import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -17,9 +18,14 @@ public class Course {
     private int instructorID;
     private String status;
 
+    @Nullable
+    private String note;
+
+
+    public static int greatestCourse = 0;
     public static int selectedCourse = -1;
 
-    public Course(int courseID, int termID, String title, String start, String end, int instructorID, String status) {
+    public Course(int courseID, int termID, String title, String start, String end, int instructorID, String status, String note) {
         this.courseID = courseID;
         this.termID = termID;
         this.title = title;
@@ -27,6 +33,7 @@ public class Course {
         this.end = end;
         this.instructorID = instructorID;
         this.status = status;
+        this.note = note;
     }
 
     public int getCourseID() {
@@ -83,5 +90,13 @@ public class Course {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }

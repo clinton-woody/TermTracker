@@ -37,6 +37,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                     intent.putExtra( "start", current.getStart());
                     intent.putExtra( "end", current.getEnd());
                     intent.putExtra( "status", current.getStatus());
+                    intent.putExtra( "note", current.getNote());
                     context.startActivity(intent);
                 }
             });
@@ -62,12 +63,12 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             Course current=mCourse.get(position);
             String title=current.getTitle();
             holder.courseItemView1.setText(title);
-            String status=current.getStatus();
-            holder.courseItemView2.setText(status);
+            String end=current.getEnd();
+            holder.courseItemView2.setText(end);
         }
         else{
             holder.courseItemView1.setText("No Course Title");
-            holder.courseItemView2.setText("No Term Status");
+            holder.courseItemView2.setText("No Course End Date");
         }
 
     }

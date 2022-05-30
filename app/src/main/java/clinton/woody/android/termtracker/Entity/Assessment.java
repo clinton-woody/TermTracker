@@ -15,16 +15,16 @@ public class Assessment {
     private String start;
     private String end;
     private String type;
-    private String status;
 
-    public Assessment(int assessmentID, int courseID, String title, String start, String end, String type, String status) {
+    public static int selectedAssessment = -1;
+    public static int greatestAssessment = 0;
+    public Assessment(int assessmentID, int courseID, String title, String start, String end, String type) {
         this.assessmentID = assessmentID;
         this.courseID = courseID;
         this.title = title;
         this.start = start;
         this.end = end;
         this.type = type;
-        this.status = status;
     }
 
     public int getAssessmentID() {
@@ -75,11 +75,4 @@ public class Assessment {
         this.type = type;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }

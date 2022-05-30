@@ -38,7 +38,6 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
                     intent.putExtra("title", current.getTitle());
                     intent.putExtra( "start", current.getStart());
                     intent.putExtra( "end", current.getEnd());
-                    intent.putExtra( "status", current.getStatus());
                     context.startActivity(intent);
                 }
             });
@@ -64,12 +63,12 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
             Term current=mTerms.get(position);
             String title=current.getTitle();
             holder.termItemView1.setText(title);
-            String status=current.getStatus();
-            holder.termItemView2.setText(status);
+            String end=current.getEnd();
+            holder.termItemView2.setText(end);
         }
         else{
             holder.termItemView1.setText("No Term Title");
-            holder.termItemView2.setText("No Term Status");
+            holder.termItemView2.setText("No Term End Date");
         }
 
     }

@@ -48,8 +48,8 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
             Assessment current=mAssessment.get(position);
             String title=current.getTitle();
             holder.assessmentItemView1.setText(title);
-            String status=current.getStatus();
-            holder.assessmentItemView2.setText(status);
+            String end=current.getEnd();
+            holder.assessmentItemView2.setText(end);
         }
         else{
             holder.assessmentItemView1.setText("No Assessment Title");

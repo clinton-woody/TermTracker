@@ -5,10 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 import clinton.woody.android.termtracker.R;
 
 public class DetailedTermActivity extends AppCompatActivity {
+    int termID;
+    int userID;
+    String title;
+    String start;
+    String end;
+    EditText editTitle;
+    EditText editStart;
+    EditText editEnd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.DetailedAssessmentActivity">
+    tools:context=".UI.DetailedAssessmentActivity"
+    android:background="@color/Yellow_Green">
 
     <ScrollView
         android:id="@+id/termScrollview"
@@ -102,23 +103,6 @@
 
                 <Spinner
                     android:id="@+id/assessmentType"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Status" />
-
-                <Spinner
-                    android:id="@+id/assessmentStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 

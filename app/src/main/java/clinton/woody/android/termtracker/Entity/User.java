@@ -12,6 +12,9 @@ public class User {
     private String password;
     private Boolean admin;
 
+    public static int selectedUser = -1;
+    public static int greatestUser = 0;
+
     public User(int userID, String userName, String password, Boolean admin) {
         this.userID = userID;
         this.userName = userName;

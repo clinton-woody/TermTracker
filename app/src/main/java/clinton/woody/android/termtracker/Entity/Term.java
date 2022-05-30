@@ -15,17 +15,18 @@ public class Term {
     private String title;
     private String start; //Will need formatter
     private String end; //Will need formatter
-    private String status;
+
 
     public static int selectedTerm = -1;//This worked
+    public static int greatestTerm = 0;
 
-    public Term(int termID, int userID, String title, String start, String end, String status) {
+    public Term(int termID, int userID, String title, String start, String end) {
         this.termID = termID;
         this.userID = userID;
         this.title = title;
         this.start = start;
         this.end = end;
-        this.status = status;
+
     }
 
     public int getTermID() {
@@ -68,13 +69,6 @@ public class Term {
         this.end = end;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }
 
 // Going to try to simulate @ForeignKey() through coded constraints and flags.
