@@ -11,6 +11,7 @@ import android.widget.Spinner;
 import clinton.woody.android.termtracker.R;
 
 public class DetailedTermActivity extends AppCompatActivity {
+    public static Boolean active = false;
     int termID;
     int userID;
     String title;
@@ -23,6 +24,7 @@ public class DetailedTermActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        active = true;
         setContentView(R.layout.activity_detailed_term);
     }
 
@@ -34,6 +36,7 @@ public class DetailedTermActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                active = false;
                 this.finish();
                 return true;
         }

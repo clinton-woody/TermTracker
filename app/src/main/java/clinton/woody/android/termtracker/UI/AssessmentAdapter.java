@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import clinton.woody.android.termtracker.Entity.Assessment;
+import clinton.woody.android.termtracker.Entity.Course;
 import clinton.woody.android.termtracker.Entity.Term;
 import clinton.woody.android.termtracker.R;
 
@@ -26,6 +27,17 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
             super(itemView);
             assessmentItemView1=itemView.findViewById(R.id.textViewAssessment1);
             assessmentItemView2=itemView.findViewById(R.id.textViewAssessment2);
+            itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    final Assessment current = mAssessment.get(position);
+                    Assessment.selectedAssessment = current.getAssessmentID();
+                    if (DetailedAssessmentActivity.active == false) {
+
+                    }
+                }
+            });
         }
     }
     private List<Assessment> mAssessment;

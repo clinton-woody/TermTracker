@@ -33,12 +33,14 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
                     int position=getAdapterPosition();
                     final Term current=mTerms.get(position);
                     Term.selectedTerm=current.getTermID();
-                    Intent intent = new Intent(context, CourseActivity.class);//use to be TermList.class
-                    intent.putExtra("id", current.getTermID());
-                    intent.putExtra("title", current.getTitle());
-                    intent.putExtra( "start", current.getStart());
-                    intent.putExtra( "end", current.getEnd());
-                    context.startActivity(intent);
+                    if (DetailedTermActivity.active == false) {
+                        Intent intent = new Intent(context, CourseActivity.class);//use to be TermList.class
+                        intent.putExtra("id", current.getTermID());
+                        intent.putExtra("title", current.getTitle());
+                        intent.putExtra("start", current.getStart());
+                        intent.putExtra("end", current.getEnd());
+                        context.startActivity(intent);
+                    }
                 }
             });
         }
