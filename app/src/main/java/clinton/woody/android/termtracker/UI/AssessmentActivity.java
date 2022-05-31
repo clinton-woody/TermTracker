@@ -36,7 +36,7 @@ public class AssessmentActivity extends AppCompatActivity {
         final AssessmentAdapter adapter=new AssessmentAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter.setAssessment(assessments);
+        adapter.setAssessments(assessments);
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_assessment, menu);

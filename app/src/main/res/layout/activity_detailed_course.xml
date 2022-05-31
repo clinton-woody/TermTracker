@@ -8,9 +8,9 @@
     android:background="@color/Yellow_Green">
 
     <ScrollView
-        android:id="@+id/courseScrollview"
+        android:id="@+id/courseScrollview2"
         android:layout_width="409dp"
-        android:layout_height="600dp"
+        android:layout_height="300dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="1dp"
@@ -133,5 +133,28 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <ScrollView
+        android:id="@+id/termScrollview3"
+        android:layout_width="409dp"
+        android:layout_height="600dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/courseScrollview2"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id='@+id/recyclerview_course'
+            android:layout_width="409dp"
+            android:layout_height="672dp"
+            android:layout_margin="0dp"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="1dp"
+            android:background="@color/Yellow_Green"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

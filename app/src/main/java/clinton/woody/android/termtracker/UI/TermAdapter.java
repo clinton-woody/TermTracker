@@ -41,6 +41,9 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
                         intent.putExtra("end", current.getEnd());
                         context.startActivity(intent);
                     }
+                    else if (DetailedTermActivity.active == true){
+
+                    }
                 }
             });
         }

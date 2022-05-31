@@ -18,14 +18,17 @@ import clinton.woody.android.termtracker.R;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {
 
+
     class CourseViewHolder extends RecyclerView.ViewHolder{
         private final TextView courseItemView1;
         private final TextView courseItemView2;
         private CourseViewHolder(View itemView){
+
             super(itemView);
             courseItemView1=itemView.findViewById(R.id.textViewCourse1);
             courseItemView2=itemView.findViewById(R.id.textViewCourse2);
             itemView.setOnClickListener(new View.OnClickListener(){
+
                 @Override
                 public void onClick(View view) {
                     int position=getAdapterPosition();
@@ -40,6 +43,9 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                         intent.putExtra("status", current.getStatus());
                         intent.putExtra("note", current.getNote());
                         context.startActivity(intent);
+                    }
+                    else if (DetailedCourseActivity.active == true){
+
                     }
                 }
             });

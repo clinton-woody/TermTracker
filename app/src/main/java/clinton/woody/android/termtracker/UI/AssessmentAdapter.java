@@ -31,7 +31,7 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
-                    final Assessment current = mAssessment.get(position);
+                    final Assessment current = mAssessments.get(position);
                     Assessment.selectedAssessment = current.getAssessmentID();
                     if (DetailedAssessmentActivity.active == false) {
 
@@ -40,7 +40,7 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
             });
         }
     }
-    private List<Assessment> mAssessment;
+    private List<Assessment> mAssessments;
     private final Context context;
     private final LayoutInflater mInflater;
     public AssessmentAdapter(Context context){
@@ -56,8 +56,8 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
 
     @Override
     public void onBindViewHolder(@NonNull AssessmentAdapter.AssessmentViewHolder holder, int position) {
-        if(mAssessment!=null){
-            Assessment current=mAssessment.get(position);
+        if(mAssessments!=null){
+            Assessment current=mAssessments.get(position);
             String title=current.getTitle();
             holder.assessmentItemView1.setText(title);
             String end=current.getEnd();
@@ -69,15 +69,15 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
         }
 
     }
-    public void setAssessment(List<Assessment> assessment) {
-        mAssessment=assessment;
+    public void setAssessments(List<Assessment> assessments) {
+        mAssessments=assessments;
         notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        if(mAssessment!=null){
-            return mAssessment.size();
+        if(mAssessments!=null){
+            return mAssessments.size();
         }
         else
             return 0;

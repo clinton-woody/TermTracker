@@ -1,6 +1,8 @@
 package clinton.woody.android.termtracker.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,9 +13,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.List;
+
+import clinton.woody.android.termtracker.Database.Repository;
+import clinton.woody.android.termtracker.Entity.Assessment;
+import clinton.woody.android.termtracker.Entity.Course;
 import clinton.woody.android.termtracker.R;
 
 public class DetailedAssessmentActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    private Repository repository;
     public static Boolean active = false;
 
     @Override
@@ -21,6 +29,16 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
         super.onCreate(savedInstanceState);
         active = true;
         setContentView(R.layout.activity_detailed_assessment);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
+        repository=new Repository(getApplication());
+        List<Assessment> allAssessments= repository.getAllAssessments();
+        RecyclerView recyclerView=findViewById(R.id.recyclerview_assessment);
+        final AssessmentAdapter assessmentAdapter=new AssessmentAdapter(this);
+        recyclerView.setAdapter(assessmentAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        assessmentAdapter.setAssessments(allAssessments);
+
         Spinner spinner3 = findViewById(R.id.assessmentType);
         ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.type_list, android.R.layout.simple_spinner_item );
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
