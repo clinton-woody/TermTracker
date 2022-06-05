@@ -21,7 +21,7 @@ public class DetailedTermActivity extends AppCompatActivity {
     public static Boolean active = false;
     int termID;
     int userID;
-    String title;
+    public static String title;
     String start;
     String end;
     public static EditText editTitle;
@@ -33,6 +33,9 @@ public class DetailedTermActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         active = true;
         setContentView(R.layout.activity_detailed_term);
+        editTitle=findViewById(R.id.termTitle);
+        editStart=findViewById(R.id.termStart);
+        editEnd=findViewById(R.id.termEnd);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         repository=new Repository(getApplication());
@@ -42,6 +45,13 @@ public class DetailedTermActivity extends AppCompatActivity {
         recyclerView.setAdapter(detailedTermAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         detailedTermAdapter.setTerms(allTerms);
+
+/*
+        editTitle.setText(title);
+        editStart.setText(start);
+        editEnd.setText(end);
+
+ */
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

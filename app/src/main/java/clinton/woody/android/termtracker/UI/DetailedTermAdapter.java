@@ -33,12 +33,22 @@ public class DetailedTermAdapter extends RecyclerView.Adapter<DetailedTermAdapte
                     int position=getAdapterPosition();
                     final Term current=mTerms.get(position);
                     Term.selectedTerm=current.getTermID();
-//                    Intent intent = new Intent(context, CourseActivity.class);//use to be TermList.class
-//                    intent.putExtra("id", current.getTermID());
-//                    intent.putExtra("title", current.getTitle());
-//                    intent.putExtra("start", current.getStart());
-//                    intent.putExtra("end", current.getEnd());
-//                    context.startActivity(intent);
+                    DetailedTermActivity.title=current.getTitle();
+                    DetailedTermActivity.editTitle.setText(DetailedTermActivity.title);
+
+
+
+
+                    /*
+                        int termID;
+    int userID;
+    String title;
+    String start;
+    String end;
+    public static EditText editTitle;
+    EditText editStart;
+    EditText editEnd;
+                     */
 
                 }
             });
