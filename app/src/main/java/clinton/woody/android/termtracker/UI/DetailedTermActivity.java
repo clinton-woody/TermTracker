@@ -22,11 +22,11 @@ public class DetailedTermActivity extends AppCompatActivity {
     int termID;
     int userID;
     public static String title;
-    String start;
-    String end;
+    public static String start;
+    public static String end;
     public static EditText editTitle;
-    EditText editStart;
-    EditText editEnd;
+    public static EditText editStart;
+    public static EditText editEnd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

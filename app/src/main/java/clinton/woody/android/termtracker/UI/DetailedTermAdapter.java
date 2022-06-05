@@ -35,21 +35,10 @@ public class DetailedTermAdapter extends RecyclerView.Adapter<DetailedTermAdapte
                     Term.selectedTerm=current.getTermID();
                     DetailedTermActivity.title=current.getTitle();
                     DetailedTermActivity.editTitle.setText(DetailedTermActivity.title);
-
-
-
-
-                    /*
-                        int termID;
-    int userID;
-    String title;
-    String start;
-    String end;
-    public static EditText editTitle;
-    EditText editStart;
-    EditText editEnd;
-                     */
-
+                    DetailedTermActivity.start=current.getStart();
+                    DetailedTermActivity.editStart.setText(DetailedTermActivity.start);
+                    DetailedTermActivity.end=current.getEnd();
+                    DetailedTermActivity.editEnd.setText(DetailedTermActivity.end);
                 }
             });
         }
