@@ -83,7 +83,8 @@
                 <EditText
                     android:id="@+id/courseTitle"
                     android:layout_width="200dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:hint="New"/>
 
                 <CheckBox
                     android:id="@+id/courseNew"
@@ -106,7 +107,8 @@
                 <EditText
                     android:id="@+id/courseStart"
                     android:layout_width="200dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:hint="New"/>
 
             </LinearLayout>
 
@@ -123,7 +125,8 @@
                 <EditText
                     android:id="@+id/courseEnd"
                     android:layout_width="200dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:hint="New"/>
 
             </LinearLayout>
 
@@ -174,7 +177,8 @@
                 <EditText
                     android:id="@+id/optionalNote"
                     android:layout_width="200dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:hint="New"/>
 
             </LinearLayout>
 

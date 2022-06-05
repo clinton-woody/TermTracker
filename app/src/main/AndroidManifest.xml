@@ -10,50 +10,53 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TermTracker">
         <activity
+            android:name=".UI.DetailedTermAdapter"
+            android:exported="false" />
+        <activity
             android:name=".UI.LoginActivity"
-            android:parentActivityName=".UI.MainActivity"
             android:exported="false"
-            android:label="Login Screen" />
+            android:label="Login Screen"
+            android:parentActivityName=".UI.MainActivity" />
         <activity
             android:name=".UI.AdminActivity"
-            android:parentActivityName=".UI.LoginActivity"
             android:exported="false"
-            android:label="Admin Screen" />
+            android:label="Admin Screen"
+            android:parentActivityName=".UI.LoginActivity" />
         <activity
             android:name=".UI.AccountActivity"
-            android:parentActivityName=".UI.LoginActivity"
             android:exported="false"
-            android:label="Account Screen" />
+            android:label="Account Screen"
+            android:parentActivityName=".UI.LoginActivity" />
         <activity
             android:name=".UI.DetailedAssessmentActivity"
-            android:parentActivityName=".UI.AssessmentActivity"
             android:exported="false"
-            android:label="Detailed Assessment Screen" />
+            android:label="Detailed Assessment Screen"
+            android:parentActivityName=".UI.AssessmentActivity" />
         <activity
             android:name=".UI.AssessmentActivity"
-            android:parentActivityName=".UI.CourseActivity"
             android:exported="false"
-            android:label="Assessment Screen" />
+            android:label="Assessment Screen"
+            android:parentActivityName=".UI.CourseActivity" />
         <activity
             android:name=".UI.DetailedCourseActivity"
-            android:parentActivityName=".UI.CourseActivity"
             android:exported="false"
-            android:label="Detailed Course Screen" />
+            android:label="Detailed Course Screen"
+            android:parentActivityName=".UI.CourseActivity" />
         <activity
             android:name=".UI.CourseActivity"
-            android:parentActivityName=".UI.TermActivity"
             android:exported="false"
-            android:label="Course Screen" />
+            android:label="Course Screen"
+            android:parentActivityName=".UI.TermActivity" />
         <activity
             android:name=".UI.DetailedTermActivity"
-            android:parentActivityName=".UI.TermActivity"
             android:exported="false"
-            android:label="Detailed Term Screen" />
+            android:label="Detailed Term Screen"
+            android:parentActivityName=".UI.TermActivity" />
         <activity
             android:name=".UI.TermActivity"
-            android:parentActivityName=".UI.MainActivity"
             android:exported="false"
-            android:label="Term Screen" />
+            android:label="Term Screen"
+            android:parentActivityName=".UI.MainActivity" />
         <activity
             android:name=".UI.MainActivity"
             android:exported="true"

@@ -15,13 +15,13 @@ import java.util.List;
 import clinton.woody.android.termtracker.Entity.Term;
 import clinton.woody.android.termtracker.R;
 
-public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder> {
+public class DetailedTermAdapter extends RecyclerView.Adapter<DetailedTermAdapter.DetailedTermViewHolder> {
 
 
-    class TermViewHolder extends RecyclerView.ViewHolder{
+    class DetailedTermViewHolder extends RecyclerView.ViewHolder{
         private final TextView termItemView1;
         private final TextView termItemView2;
-        private TermViewHolder(View itemView){
+        private DetailedTermViewHolder(View itemView){
 
             super(itemView);
             termItemView1=itemView.findViewById(R.id.textViewTerm1);
@@ -33,12 +33,12 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
                     int position=getAdapterPosition();
                     final Term current=mTerms.get(position);
                     Term.selectedTerm=current.getTermID();
-                    Intent intent = new Intent(context, CourseActivity.class);//use to be TermList.class
-                    intent.putExtra("id", current.getTermID());
-                    intent.putExtra("title", current.getTitle());
-                    intent.putExtra("start", current.getStart());
-                    intent.putExtra("end", current.getEnd());
-                    context.startActivity(intent);
+//                    Intent intent = new Intent(context, CourseActivity.class);//use to be TermList.class
+//                    intent.putExtra("id", current.getTermID());
+//                    intent.putExtra("title", current.getTitle());
+//                    intent.putExtra("start", current.getStart());
+//                    intent.putExtra("end", current.getEnd());
+//                    context.startActivity(intent);
 
                 }
             });
@@ -47,19 +47,19 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
     private List<Term> mTerms;
     private final Context context;
     private final LayoutInflater mInflater;
-    public TermAdapter(Context context){
+    public DetailedTermAdapter(Context context){
         mInflater=LayoutInflater.from(context);
         this.context=context;
     }
     @NonNull
     @Override
-    public TermAdapter.TermViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DetailedTermAdapter.DetailedTermViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView=mInflater.inflate(R.layout.term_item,parent, false);
-        return new TermViewHolder(itemView);
+        return new DetailedTermViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TermAdapter.TermViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull DetailedTermAdapter.DetailedTermViewHolder holder, int position) {
         if(mTerms!=null){
             Term current=mTerms.get(position);
             String title=current.getTitle();

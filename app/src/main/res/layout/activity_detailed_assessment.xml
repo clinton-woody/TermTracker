@@ -84,7 +84,8 @@
                 <EditText
                     android:id="@+id/assessmentTitle"
                     android:layout_width="200dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:hint="New"/>
 
                 <CheckBox
                     android:id="@+id/assessmentNew"
@@ -107,7 +108,8 @@
                 <EditText
                     android:id="@+id/assessmentStart"
                     android:layout_width="200dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:hint="New"/>
 
             </LinearLayout>
 
@@ -124,7 +126,8 @@
                 <EditText
                     android:id="@+id/assessmentEnd"
                     android:layout_width="200dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:hint="New"/>
 
             </LinearLayout>
 

@@ -24,7 +24,7 @@ public class DetailedTermActivity extends AppCompatActivity {
     String title;
     String start;
     String end;
-    EditText editTitle;
+    public static EditText editTitle;
     EditText editStart;
     EditText editEnd;
 
@@ -37,11 +37,11 @@ public class DetailedTermActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         repository=new Repository(getApplication());
         List<Term> allTerms= repository.getAllTerms();
-        RecyclerView recyclerView=findViewById(R.id.recyclerview_term);
-        final TermAdapter termAdapter=new TermAdapter(this);
-        recyclerView.setAdapter(termAdapter);
+        RecyclerView recyclerView=findViewById(R.id.recyclerview_detailedTerm);
+        final DetailedTermAdapter detailedTermAdapter=new DetailedTermAdapter(this);
+        recyclerView.setAdapter(detailedTermAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        termAdapter.setTerms(allTerms);
+        detailedTermAdapter.setTerms(allTerms);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
