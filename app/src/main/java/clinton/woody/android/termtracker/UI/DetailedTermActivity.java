@@ -45,13 +45,6 @@ public class DetailedTermActivity extends AppCompatActivity {
         recyclerView.setAdapter(detailedTermAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         detailedTermAdapter.setTerms(allTerms);
-
-/*
-        editTitle.setText(title);
-        editStart.setText(start);
-        editEnd.setText(end);
-
- */
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

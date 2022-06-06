@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -23,27 +24,39 @@ import clinton.woody.android.termtracker.R;
 public class DetailedAssessmentActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private Repository repository;
     public static Boolean active = false;
+    public static String title;
+    public static String startDate;
+    public static String endDate;
+    public static int typeIndex;
+
+    public static EditText editTitle;
+    public static EditText editStart;
+    public static EditText editEnd;
+    public static Spinner spinnerType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         active = true;
         setContentView(R.layout.activity_detailed_assessment);
+        editTitle=findViewById(R.id.assessmentTitle);
+        editStart=findViewById(R.id.assessmentStart);
+        editEnd=findViewById(R.id.assessmentEnd);
+        spinnerType=findViewById(R.id.assessmentType);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         repository=new Repository(getApplication());
         List<Assessment> allAssessments= repository.getAllAssessments();
         RecyclerView recyclerView=findViewById(R.id.recyclerview_assessment);
-        final AssessmentAdapter assessmentAdapter=new AssessmentAdapter(this);
-        recyclerView.setAdapter(assessmentAdapter);
+        final DetailedAssessmentAdapter detailedAssessmentAdapter=new DetailedAssessmentAdapter(this);
+        recyclerView.setAdapter(detailedAssessmentAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        assessmentAdapter.setAssessments(allAssessments);
-
-        Spinner spinner3 = findViewById(R.id.assessmentType);
+        detailedAssessmentAdapter.setAssessments(allAssessments);
+        spinnerType=findViewById(R.id.assessmentType);
         ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.type_list, android.R.layout.simple_spinner_item );
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner3.setAdapter(adapter3);
-        spinner3.setOnItemSelectedListener(this);
+        spinnerType.setAdapter(adapter3);
+        spinnerType.setOnItemSelectedListener(this);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

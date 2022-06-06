@@ -175,7 +175,7 @@
                     android:text="Optional Note" />
 
                 <EditText
-                    android:id="@+id/optionalNote"
+                    android:id="@+id/courseNote"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:hint="New"/>
@@ -203,11 +203,9 @@
             android:layout_margin="0dp"
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="1dp"
-            android:background="@color/Yellow_Green"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
     </ScrollView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

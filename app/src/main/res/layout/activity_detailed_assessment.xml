@@ -7,8 +7,6 @@
     tools:context=".UI.DetailedAssessmentActivity"
     android:background="@color/Yellow_Green">
 
-
-
     <ScrollView
         android:id="@+id/assessmentScrollview1"
         android:layout_width="409dp"
@@ -169,7 +167,6 @@
             android:layout_margin="0dp"
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="1dp"
-            android:background="@color/Yellow_Green"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
