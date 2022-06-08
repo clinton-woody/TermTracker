@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -27,6 +28,9 @@ public class DetailedTermActivity extends AppCompatActivity {
     public static EditText editTitle;
     public static EditText editStart;
     public static EditText editEnd;
+    public static TextView selectedTitle;
+    public static TextView selectedStart;
+    public static TextView selectedEnd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,9 @@ public class DetailedTermActivity extends AppCompatActivity {
         editTitle=findViewById(R.id.termTitle);
         editStart=findViewById(R.id.termStart);
         editEnd=findViewById(R.id.termEnd);
+        selectedTitle=findViewById(R.id.selectedTitle);
+        selectedStart=findViewById(R.id.selectedStart);
+        selectedEnd=findViewById(R.id.selectedEnd);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         repository=new Repository(getApplication());

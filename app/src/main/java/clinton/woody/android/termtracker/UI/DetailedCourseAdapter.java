@@ -36,12 +36,42 @@ public class DetailedCourseAdapter extends RecyclerView.Adapter<DetailedCourseAd
                     Course.selectedCourse=current.getCourseID();
                     DetailedCourseActivity.title=current.getTitle();
                     DetailedCourseActivity.editTitle.setText(DetailedCourseActivity.title);
+                    DetailedCourseActivity.selectedTitle.setText(DetailedCourseActivity.title);
                     DetailedCourseActivity.startDate=current.getStart();
                     DetailedCourseActivity.editStart.setText(DetailedCourseActivity.startDate);
+                    DetailedCourseActivity.selectedStart.setText(DetailedCourseActivity.startDate);
                     DetailedCourseActivity.endDate=current.getEnd();
                     DetailedCourseActivity.editEnd.setText(DetailedCourseActivity.endDate);
+                    DetailedCourseActivity.selectedEnd.setText(DetailedCourseActivity.endDate);
+                    DetailedCourseActivity.status=current.getStatus();
+                    if (DetailedCourseActivity.status.equals("Plan to Take")){
+                        DetailedCourseActivity.spinnerStatus.setSelection(1);
+                    }else if (DetailedCourseActivity.status.equals("In Progress")){
+                        DetailedCourseActivity.spinnerStatus.setSelection(2);
+                    }else if (DetailedCourseActivity.status.equals("Completed")){
+                        DetailedCourseActivity.spinnerStatus.setSelection(3);
+                    }else if (DetailedCourseActivity.status.equals("Dropped")){
+                        DetailedCourseActivity.spinnerStatus.setSelection(4);
+                    }
+                    DetailedCourseActivity.selectedStatus.setText(DetailedCourseActivity.status);
+                    DetailedCourseActivity.instructorId=current.getInstructorID();//need method
+                    if (DetailedCourseActivity.instructorId==1){
+                        DetailedCourseActivity.name="Instructor1";
+                        DetailedCourseActivity.phone="555-123-4567";
+                        DetailedCourseActivity.email="instructor1@school.edu";
+                        DetailedCourseActivity.spinnerInstructor.setSelection(1);
+                    }else{
+                        DetailedCourseActivity.name="Instructor2";
+                        DetailedCourseActivity.phone="555-123-8901";
+                        DetailedCourseActivity.email="instructor2@school.edu";
+                        DetailedCourseActivity.spinnerInstructor.setSelection(2);
+                    }
+                    DetailedCourseActivity.selectedName.setText(DetailedCourseActivity.name);
+                    DetailedCourseActivity.selectedPhone.setText(DetailedCourseActivity.phone);
+                    DetailedCourseActivity.selectedEmail.setText(DetailedCourseActivity.email);
                     DetailedCourseActivity.optionalNote=current.getNote();
                     DetailedCourseActivity.editNote.setText(DetailedCourseActivity.optionalNote);
+                    DetailedCourseActivity.selectedNote.setText(DetailedCourseActivity.optionalNote);
                 }
             });
         }

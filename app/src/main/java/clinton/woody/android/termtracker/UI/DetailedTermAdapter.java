@@ -34,10 +34,13 @@ public class DetailedTermAdapter extends RecyclerView.Adapter<DetailedTermAdapte
                     final Term current=mTerms.get(position);
                     Term.selectedTerm=current.getTermID();
                     DetailedTermActivity.title=current.getTitle();
+                    DetailedTermActivity.selectedTitle.setText(DetailedTermActivity.title);
                     DetailedTermActivity.editTitle.setText(DetailedTermActivity.title);
                     DetailedTermActivity.start=current.getStart();
+                    DetailedTermActivity.selectedStart.setText(DetailedTermActivity.start);
                     DetailedTermActivity.editStart.setText(DetailedTermActivity.start);
                     DetailedTermActivity.end=current.getEnd();
+                    DetailedTermActivity.selectedEnd.setText(DetailedTermActivity.end);
                     DetailedTermActivity.editEnd.setText(DetailedTermActivity.end);
                 }
             });

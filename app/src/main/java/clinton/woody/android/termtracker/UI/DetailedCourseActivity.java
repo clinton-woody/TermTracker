@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -28,6 +29,11 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
     public static String startDate;
     public static String endDate;
     public static String optionalNote;
+    public static String status;
+    public static String name;
+    public static String phone;
+    public static String email;
+    public static int instructorId;
     public static int instructorIndex;
     public static int statusIndex;
 
@@ -37,6 +43,14 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
     public static EditText editNote;
     public static Spinner spinnerInstructor;
     public static Spinner spinnerStatus;
+    public static TextView selectedTitle;
+    public static TextView selectedStart;
+    public static TextView selectedEnd;
+    public static TextView selectedStatus;
+    public static TextView selectedName;
+    public static TextView selectedPhone;
+    public static TextView selectedEmail;
+    public static TextView selectedNote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +63,14 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
         editNote=findViewById(R.id.courseNote);
         spinnerInstructor=findViewById(R.id.courseInstructor);
         spinnerStatus=findViewById(R.id.courseStatus);
+        selectedTitle=findViewById(R.id.selectedCTitle);
+        selectedStart=findViewById(R.id.selectedCStart);
+        selectedEnd=findViewById(R.id.selectedCEnd);
+        selectedStatus=findViewById(R.id.selectedCStatus);
+        selectedName=findViewById(R.id.selectedCInstructorName);
+        selectedPhone=findViewById(R.id.selectedCInstructorPhone);
+        selectedEmail=findViewById(R.id.selectedCInstructorEmail);
+        selectedNote=findViewById(R.id.selectedCOptionalNote);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         repository=new Repository(getApplication());

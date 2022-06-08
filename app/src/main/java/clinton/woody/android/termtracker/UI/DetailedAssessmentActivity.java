@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -34,6 +35,10 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
     public static EditText editStart;
     public static EditText editEnd;
     public static Spinner spinnerType;
+    public static TextView selectedTitle;
+    public static TextView selectedStart;
+    public static TextView selectedEnd;
+    public static TextView selectedType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,10 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
         editStart=findViewById(R.id.assessmentStart);
         editEnd=findViewById(R.id.assessmentEnd);
         spinnerType=findViewById(R.id.assessmentType);
+        selectedTitle=findViewById(R.id.selectedATitle);
+        selectedStart=findViewById(R.id.selectedAStart);
+        selectedEnd=findViewById(R.id.selectedAEnd);
+        selectedType=findViewById(R.id.selectedAType);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         repository=new Repository(getApplication());

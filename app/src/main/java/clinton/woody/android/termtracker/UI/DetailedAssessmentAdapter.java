@@ -37,10 +37,20 @@ public class DetailedAssessmentAdapter extends RecyclerView.Adapter<DetailedAsse
                     Assessment.selectedAssessment = current.getAssessmentID();
                     DetailedAssessmentActivity.title=current.getTitle();
                     DetailedAssessmentActivity.editTitle.setText(DetailedAssessmentActivity.title);
+                    DetailedAssessmentActivity.selectedTitle.setText(DetailedAssessmentActivity.title);
                     DetailedAssessmentActivity.startDate=current.getStart();
                     DetailedAssessmentActivity.editStart.setText(DetailedAssessmentActivity.startDate);
+                    DetailedAssessmentActivity.selectedStart.setText(DetailedAssessmentActivity.startDate);
                     DetailedAssessmentActivity.endDate=current.getEnd();
                     DetailedAssessmentActivity.editEnd.setText(DetailedAssessmentActivity.endDate);
+                    DetailedAssessmentActivity.selectedEnd.setText(DetailedAssessmentActivity.endDate);
+                    DetailedAssessmentActivity.type=current.getType();
+                    DetailedAssessmentActivity.selectedType.setText(DetailedAssessmentActivity.type);
+                    if (DetailedAssessmentActivity.type.equals("Performance")){
+                        DetailedAssessmentActivity.spinnerType.setSelection(1);
+                    }else if(DetailedAssessmentActivity.type.equals("Objective")){
+                        DetailedAssessmentActivity.spinnerType.setSelection(2);
+                    }
 
                     /*
                         public static String title;
