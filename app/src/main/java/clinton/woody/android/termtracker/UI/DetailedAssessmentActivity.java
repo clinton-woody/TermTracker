@@ -24,6 +24,7 @@ import clinton.woody.android.termtracker.R;
 public class DetailedAssessmentActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private Repository repository;
     public static Boolean active = false;
+    public static String type;
     public static String title;
     public static String startDate;
     public static String endDate;

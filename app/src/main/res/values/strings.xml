@@ -2,11 +2,13 @@
     <string name="app_name">TermTracker</string>
 
     <string-array name="instructor_list">
-        <item>Instructor1; Phone: 555-123-4567; email: instructor1@school.edu</item>
-        <item>Instructor2; Phone: 555-123-8912; email: instructor2@school.edu</item>
+        <item>None Selected</item>
+        <item>Instructor1</item>
+        <item>Instructor2</item>
     </string-array>
 
     <string-array name="status_list">
+        <item>None Selected</item>
         <item>Plan to Take</item>
         <item>In Progress</item>
         <item>Completed</item>
@@ -14,6 +16,7 @@
     </string-array>
 
     <string-array name="type_list">
+        <item>None Selected</item>
         <item>Performance</item>
         <item>Objective</item>
     </string-array>
