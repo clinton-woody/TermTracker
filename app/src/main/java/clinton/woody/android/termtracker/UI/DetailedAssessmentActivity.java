@@ -80,9 +80,30 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
                 active = false;
                 this.finish();
                 return true;
+            case R.id.updateAssessment:
+            case R.id.deleteAssessment:
+            case R.id.clearAssessment:
+                Assessment.selectedAssessment = -1;
+                title = null;
+                startDate = null;
+                endDate = null;
+                type = null;
+                selectedTitle.setText(title);
+                editTitle.setText(title);
+                selectedStart.setText(startDate);
+                editStart.setText(startDate);
+                selectedEnd.setText(endDate);
+                editEnd.setText(endDate);
+                spinnerType.setSelection(0);
+                selectedType.setText(type);
         }
         return super.onOptionsItemSelected(item);
     }
+
+    /*
+
+
+     */
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {

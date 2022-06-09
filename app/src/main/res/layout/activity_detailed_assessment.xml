@@ -161,12 +161,6 @@
                     android:layout_height="wrap_content"
                     android:hint="New"/>
 
-                <CheckBox
-                    android:id="@+id/assessmentNew"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="new"/>
-
             </LinearLayout>
 
             <LinearLayout

@@ -9,4 +9,8 @@
         android:orderInCategory="100"
         android:id="@+id/deleteCourse"/>
 
+    <item android:title="Clear Selected Course"
+        android:orderInCategory="100"
+        android:id="@+id/clearCourse"/>
+
 </menu>

@@ -9,4 +9,8 @@
         android:orderInCategory="100"
         android:id="@+id/deleteAssessment"/>
 
+    <item android:title="Clear Selected Assessment"
+        android:orderInCategory="100"
+        android:id="@+id/clearAssessment"/>
+
 </menu>

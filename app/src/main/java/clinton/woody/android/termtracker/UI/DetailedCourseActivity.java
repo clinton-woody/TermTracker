@@ -101,6 +101,41 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
                 active = false;
                 this.finish();
                 return true;
+            case R.id.updateCourse:
+            case R.id.deleteCourse:
+            case R.id.clearCourse:
+                Course.selectedCourse = -1;
+                title = null;
+                startDate = null;
+                endDate = null;
+                optionalNote = null;
+                status = null;
+                name = null;
+                phone = null;
+                email = null;
+                optionalNote = null;
+                selectedTitle.setText(title);
+                editTitle.setText(title);
+                selectedStart.setText(startDate);
+                editStart.setText(startDate);
+                selectedEnd.setText(endDate);
+                editEnd.setText(endDate);
+                editNote.setText(optionalNote);
+                spinnerStatus.setSelection(0);
+                selectedStatus.setText(status);
+                spinnerInstructor.setSelection(0);
+                selectedName.setText(name);
+                selectedPhone.setText(phone);
+                selectedEmail.setText(email);
+                selectedNote.setText(optionalNote);
+                /*
+
+
+
+
+
+                 */
+
         }
         return super.onOptionsItemSelected(item);
     }
