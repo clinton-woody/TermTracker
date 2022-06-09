@@ -1,5 +1,7 @@
 package clinton.woody.android.termtracker.Entity;
 
+import android.widget.TextView;
+
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
@@ -19,6 +21,9 @@ public class Term {
 
     public static int selectedTerm = -1;//This worked
     public static int greatestTerm = 0;
+    public static String selectedTitle;
+    public static String selectedStart;
+    public static String selectedEnd;
 
     public Term(int termID, int userID, String title, String start, String end) {
         this.termID = termID;

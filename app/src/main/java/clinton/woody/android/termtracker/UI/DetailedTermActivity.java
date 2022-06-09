@@ -25,6 +25,9 @@ public class DetailedTermActivity extends AppCompatActivity {
     public static String title;
     public static String start;
     public static String end;
+    public static String updateTitle;
+    public static String updateStart;
+    public static String updateEnd;
     public static EditText editTitle;
     public static EditText editStart;
     public static EditText editEnd;

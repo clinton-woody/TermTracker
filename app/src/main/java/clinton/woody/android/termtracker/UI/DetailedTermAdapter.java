@@ -33,6 +33,9 @@ public class DetailedTermAdapter extends RecyclerView.Adapter<DetailedTermAdapte
                     int position=getAdapterPosition();
                     final Term current=mTerms.get(position);
                     Term.selectedTerm=current.getTermID();
+                    Term.selectedTitle=current.getTitle();
+                    Term.selectedStart=current.getStart();
+                    Term.selectedEnd=current.getEnd();
                     DetailedTermActivity.title=current.getTitle();
                     DetailedTermActivity.selectedTitle.setText(DetailedTermActivity.title);
                     DetailedTermActivity.editTitle.setText(DetailedTermActivity.title);
