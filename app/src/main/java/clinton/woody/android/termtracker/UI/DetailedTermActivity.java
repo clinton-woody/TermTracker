@@ -68,6 +68,20 @@ public class DetailedTermActivity extends AppCompatActivity {
                 active = false;
                 this.finish();
                 return true;
+            case R.id.updateTerm:
+            case R.id.deleteTerm:
+            case R.id.clearTerm:
+                Term.selectedTerm = -1;
+                title = null;
+                start = null;
+                end = null;
+                selectedTitle.setText(title);
+                editTitle.setText(title);
+                selectedStart.setText(start);
+                editStart.setText(start);
+                selectedEnd.setText(end);
+                editEnd.setText(end);
+
         }
         return super.onOptionsItemSelected(item);
     }

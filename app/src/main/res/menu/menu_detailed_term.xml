@@ -9,4 +9,8 @@
         android:orderInCategory="100"
         android:id="@+id/deleteTerm"/>
 
+    <item android:title="Clear Selected Term"
+        android:orderInCategory="100"
+        android:id="@+id/clearTerm"/>
+
 </menu>
