@@ -19,8 +19,8 @@ public class Term {
     private String end; //Will need formatter
 
 
-    public static int selectedTerm = -1;//This worked
-    public static int greatestTerm = 0;
+    public static int selectedTerm = 0;//This worked
+    //public static int greatestTerm = 0;
     public static String selectedTitle;
     public static String selectedStart;
     public static String selectedEnd;

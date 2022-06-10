@@ -49,6 +49,7 @@ public class DetailedTermAdapter extends RecyclerView.Adapter<DetailedTermAdapte
             });
         }
     }
+
     private List<Term> mTerms;
     private final Context context;
     private final LayoutInflater mInflater;
@@ -66,6 +67,7 @@ public class DetailedTermAdapter extends RecyclerView.Adapter<DetailedTermAdapte
     @Override
     public void onBindViewHolder(@NonNull DetailedTermAdapter.DetailedTermViewHolder holder, int position) {
         if(mTerms!=null){
+
             Term current=mTerms.get(position);
             String title=current.getTitle();
             holder.termItemView1.setText(title);

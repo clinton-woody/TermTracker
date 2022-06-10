@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import java.util.List;
+
 import clinton.woody.android.termtracker.Database.Repository;
 import clinton.woody.android.termtracker.Entity.Assessment;
 import clinton.woody.android.termtracker.Entity.Course;
@@ -16,6 +18,7 @@ import clinton.woody.android.termtracker.R;
 
 public class MainActivity extends AppCompatActivity {
     public static int alertNumber;
+    private Repository repository;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void toTerm(View view) {
+
         Intent intent = new Intent(MainActivity.this, TermActivity.class);
         startActivity(intent);
         Repository repo=new Repository(getApplication());
@@ -42,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         repo.insert(user2);//needed
         repo.insert(instructor1);//needed
         repo.insert(instructor2);//needed
-
     }
 }
 //Scope: Mobile App Dev with some changes for Capstone
