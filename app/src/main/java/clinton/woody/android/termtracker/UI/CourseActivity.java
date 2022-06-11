@@ -27,19 +27,21 @@ public class CourseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);//
         setContentView(R.layout.activity_course);//
-        termID = Term.selectedTerm;
+        termID = Term.selectedTerm;//
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
-        RecyclerView recyclerView=findViewById(R.id.recyclerview_course);
         repository=new Repository(getApplication());
-        final CourseAdapter adapter=new CourseAdapter(this);
-        recyclerView.setAdapter(adapter);
+
+        RecyclerView recyclerView=findViewById(R.id.recyclerview_course);
+
+        final CourseAdapter courseAdapter=new CourseAdapter(this);
+        recyclerView.setAdapter(courseAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         List<Course> filteredCourses=new ArrayList<>();
         for (Course c:repository.getAllCourses()){
             if(c.getTermID()==termID)filteredCourses.add(c);
         }
-        adapter.setCourses(filteredCourses);
+        courseAdapter.setCourses(filteredCourses);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -55,6 +57,7 @@ public class CourseActivity extends AppCompatActivity {
             case R.id.detailedCourse:
                 Intent intent=new Intent(CourseActivity.this,DetailedCourseActivity.class);
                 startActivity(intent);
+                this.finish();
         }
         return super.onOptionsItemSelected(item);
     }

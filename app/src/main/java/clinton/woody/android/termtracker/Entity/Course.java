@@ -21,9 +21,13 @@ public class Course {
     @Nullable
     private String note;
 
-
-    public static int greatestCourse = 0;
-    public static int selectedCourse = -1;
+    public static int selectedCourse = 0;
+    public static String selectedTitle = null;
+    public static String selectedStart = null;
+    public static String selectedEnd = null;
+    public static int selectedInstructor = 0;
+    public static String selectedStatus = null;
+    public static String selectedNote = null;
 
     public Course(int courseID, int termID, String title, String start, String end, int instructorID, String status, String note) {
         this.courseID = courseID;

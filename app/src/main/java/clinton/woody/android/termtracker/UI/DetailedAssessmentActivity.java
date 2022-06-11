@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -78,12 +79,80 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
         switch (item.getItemId()) {
             case android.R.id.home:
                 active = false;
+                Intent intent=new Intent(DetailedAssessmentActivity.this,AssessmentActivity.class);
+                startActivity(intent);
                 this.finish();
                 return true;
             case R.id.updateAssessment:
+                if (Assessment.selectedAssessment == 0){
+                    if (spinnerType.getSelectedItemPosition() == 1){
+                        Assessment.selectedType = "Performance";
+                    }else if (spinnerType.getSelectedItemPosition() == 1){
+                        Assessment.selectedType = "Objective";
+                    }else{
+                        Assessment.selectedType = null;
+                    }
+                    Assessment.selectedEnd = editEnd.getText().toString();
+                    Assessment.selectedStart = editStart.getText().toString();
+                    Assessment.selectedTitle = editTitle.getText().toString();
+                    Assessment assessment=new Assessment(Assessment.selectedAssessment, Course.selectedCourse, Assessment.selectedTitle, Assessment.selectedStart, Assessment.selectedEnd, Assessment.selectedType);
+                    repository.insert(assessment);
+                    title = null;
+                    startDate = null;
+                    endDate = null;
+                    type = null;
+                    selectedTitle.setText(title);
+                    editTitle.setText(title);
+                    selectedStart.setText(startDate);
+                    editStart.setText(startDate);
+                    selectedEnd.setText(endDate);
+                    editEnd.setText(endDate);
+                    spinnerType.setSelection(0);
+                    selectedType.setText(type);
+                    repository=new Repository(getApplication());
+                    List<Assessment> allAssessments=repository.getAllAssessments();
+                    RecyclerView recyclerView=findViewById(R.id.recyclerview_assessment);
+                    final DetailedAssessmentAdapter detailedAssessmentAdapter=new DetailedAssessmentAdapter(this);
+                    recyclerView.setAdapter(detailedAssessmentAdapter);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                    detailedAssessmentAdapter.setAssessments(allAssessments);
+                    Assessment.selectedAssessment = 0;
+                }else{
+                    if (spinnerType.getSelectedItemPosition() == 1){
+                        Assessment.selectedType = "Performance";
+                    }else if (spinnerType.getSelectedItemPosition() == 1){
+                        Assessment.selectedType = "Objective";
+                    }else{
+                        Assessment.selectedType = null;
+                    }
+                    Assessment.selectedEnd = editEnd.getText().toString();
+                    Assessment.selectedStart = editStart.getText().toString();
+                    Assessment.selectedTitle = editTitle.getText().toString();
+                    Assessment assessment=new Assessment(Assessment.selectedAssessment, Course.selectedCourse, Assessment.selectedTitle, Assessment.selectedStart, Assessment.selectedEnd, Assessment.selectedType);
+                    repository.update(assessment);
+                    title = null;
+                    startDate = null;
+                    endDate = null;
+                    type = null;
+                    selectedTitle.setText(title);
+                    editTitle.setText(title);
+                    selectedStart.setText(startDate);
+                    editStart.setText(startDate);
+                    selectedEnd.setText(endDate);
+                    editEnd.setText(endDate);
+                    spinnerType.setSelection(0);
+                    selectedType.setText(type);
+                    repository=new Repository(getApplication());
+                    List<Assessment> allAssessments=repository.getAllAssessments();
+                    RecyclerView recyclerView=findViewById(R.id.recyclerview_assessment);
+                    final DetailedAssessmentAdapter detailedAssessmentAdapter=new DetailedAssessmentAdapter(this);
+                    recyclerView.setAdapter(detailedAssessmentAdapter);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                    detailedAssessmentAdapter.setAssessments(allAssessments);
+                    Assessment.selectedAssessment = 0;
+                }
             case R.id.deleteAssessment:
             case R.id.clearAssessment:
-                Assessment.selectedAssessment = -1;
                 title = null;
                 startDate = null;
                 endDate = null;
@@ -96,6 +165,7 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
                 editEnd.setText(endDate);
                 spinnerType.setSelection(0);
                 selectedType.setText(type);
+                Assessment.selectedAssessment = 0;
         }
         return super.onOptionsItemSelected(item);
     }

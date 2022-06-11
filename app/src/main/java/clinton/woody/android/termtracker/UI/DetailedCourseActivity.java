@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +25,6 @@ import clinton.woody.android.termtracker.R;
 
 public class DetailedCourseActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private Repository repository;
-    public static Boolean active = false;
     public static String title;
     public static String startDate;
     public static String endDate;
@@ -34,9 +34,6 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
     public static String phone;
     public static String email;
     public static int instructorId;
-    public static int instructorIndex;
-    public static int statusIndex;
-
     public static EditText editTitle;
     public static EditText editStart;
     public static EditText editEnd;
@@ -55,7 +52,7 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        active = true;
+        Course.selectedCourse = 0;
         setContentView(R.layout.activity_detailed_course);
         editTitle=findViewById(R.id.courseTitle);
         editStart=findViewById(R.id.courseStart);
@@ -75,7 +72,7 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         repository=new Repository(getApplication());
         List<Course> allCourses= repository.getAllCourses();
-        RecyclerView recyclerView=findViewById(R.id.recyclerview_course);
+        RecyclerView recyclerView=findViewById(R.id.recyclerview_detailedCourse);
         final DetailedCourseAdapter detailedCourseAdapter=new DetailedCourseAdapter(this);
         recyclerView.setAdapter(detailedCourseAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -98,13 +95,129 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                active = false;
+                Intent intent=new Intent(DetailedCourseActivity.this,CourseActivity.class);
+                startActivity(intent);
                 this.finish();
                 return true;
             case R.id.updateCourse:
+
+                if (Course.selectedCourse == 0){
+                    if (spinnerStatus.getSelectedItemPosition() == 1){
+                        Course.selectedStatus="Plan to Take";
+                    }else if (spinnerStatus.getSelectedItemPosition() == 2){
+                        Course.selectedStatus="In Progress";
+                    }else if (spinnerStatus.getSelectedItemPosition() == 3){
+                        Course.selectedStatus="Completed";
+                    }else if (spinnerStatus.getSelectedItemPosition() == 4){
+                        Course.selectedStatus="Dropped";
+                    }else{
+                        Course.selectedStatus=null;
+                    }
+                    if (spinnerInstructor.getSelectedItemPosition() == 1){
+                        Course.selectedInstructor=1;
+                    }else if (spinnerInstructor.getSelectedItemPosition() == 2){
+                        Course.selectedInstructor=2;
+                    }else{
+                        Course.selectedInstructor=0;
+                    }
+                    Course.selectedEnd=editEnd.getText().toString();
+                    Course.selectedStart =editStart.getText().toString();
+                    Course.selectedTitle=editTitle.getText().toString();
+                    Course.selectedNote=editNote.getText().toString();
+                    Course current=new Course(Course.selectedCourse, Term.selectedTerm, Course.selectedTitle, Course.selectedStart, Course.selectedEnd, Course.selectedInstructor, Course.selectedStatus, Course.selectedNote);
+                    repository.insert(current);
+                    DetailedCourseActivity.title = null;
+                    DetailedCourseActivity.startDate = null;
+                    DetailedCourseActivity.endDate = null;
+                    DetailedCourseActivity.optionalNote = null;
+                    DetailedCourseActivity.status = null;
+                    DetailedCourseActivity.name = null;
+                    DetailedCourseActivity.phone = null;
+                    DetailedCourseActivity.email = null;
+                    DetailedCourseActivity.optionalNote = null;
+                    selectedTitle.setText(title);
+                    editTitle.setText(title);
+                    selectedStart.setText(startDate);
+                    editStart.setText(startDate);
+                    selectedEnd.setText(endDate);
+                    editEnd.setText(endDate);
+                    editNote.setText(optionalNote);
+                    spinnerStatus.setSelection(0);
+                    selectedStatus.setText(status);
+                    spinnerInstructor.setSelection(0);
+                    selectedName.setText(name);
+                    selectedPhone.setText(phone);
+                    selectedEmail.setText(email);
+                    selectedNote.setText(optionalNote);
+                    repository=new Repository(getApplication());
+                    List<Course> allCourses=repository.getAllCourses();
+                    RecyclerView recyclerView=findViewById(R.id.recyclerview_detailedCourse);
+                    final DetailedCourseAdapter detailedCourseAdapter=new DetailedCourseAdapter(this);
+                    recyclerView.setAdapter(detailedCourseAdapter);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                    detailedCourseAdapter.setCourses(allCourses);
+                    Course.selectedCourse = 0;
+                }else{
+                    if (spinnerStatus.getSelectedItemPosition() == 1){
+                        Course.selectedStatus="Plan to Take";
+                    }else if (spinnerStatus.getSelectedItemPosition() == 2){
+                        Course.selectedStatus="In Progress";
+                    }else if (spinnerStatus.getSelectedItemPosition() == 3){
+                        Course.selectedStatus="Completed";
+                    }else if (spinnerStatus.getSelectedItemPosition() == 4){
+                        Course.selectedStatus="Dropped";
+                    }else{
+                        Course.selectedStatus=null;
+                    }
+                    if (spinnerInstructor.getSelectedItemPosition() == 1){
+                        Course.selectedInstructor=1;
+                    }else if (spinnerInstructor.getSelectedItemPosition() == 2){
+                        Course.selectedInstructor=2;
+                    }else{
+                        Course.selectedInstructor=0;
+                    }
+                    Course.selectedEnd=editEnd.getText().toString();
+                    Course.selectedStart =editStart.getText().toString();
+                    Course.selectedTitle=editTitle.getText().toString();
+                    Course.selectedNote=editNote.getText().toString();
+                    Course current=new Course(Course.selectedCourse, Term.selectedTerm, Course.selectedTitle, Course.selectedStart, Course.selectedEnd, Course.selectedInstructor, Course.selectedStatus, Course.selectedNote);
+                    repository.update(current);
+                    title = null;
+                    startDate = null;
+                    endDate = null;
+                    optionalNote = null;
+                    status = null;
+                    name = null;
+                    phone = null;
+                    email = null;
+                    optionalNote = null;
+                    selectedTitle.setText(title);
+                    editTitle.setText(title);
+                    selectedStart.setText(startDate);
+                    editStart.setText(startDate);
+                    selectedEnd.setText(endDate);
+                    editEnd.setText(endDate);
+                    editNote.setText(optionalNote);
+                    spinnerStatus.setSelection(0);
+                    selectedStatus.setText(status);
+                    spinnerInstructor.setSelection(0);
+                    selectedName.setText(name);
+                    selectedPhone.setText(phone);
+                    selectedEmail.setText(email);
+                    selectedNote.setText(optionalNote);
+                    repository=new Repository(getApplication());
+                    List<Course> allCourses=repository.getAllCourses();
+                    RecyclerView recyclerView=findViewById(R.id.recyclerview_detailedCourse);
+                    final DetailedCourseAdapter detailedCourseAdapter=new DetailedCourseAdapter(this);
+                    recyclerView.setAdapter(detailedCourseAdapter);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                    detailedCourseAdapter.setCourses(allCourses);
+                    Course.selectedCourse = 0;
+                }
+
             case R.id.deleteCourse:
             case R.id.clearCourse:
-                Course.selectedCourse = -1;
+                Course.selectedCourse = 0;
                 title = null;
                 startDate = null;
                 endDate = null;
@@ -128,14 +241,6 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
                 selectedPhone.setText(phone);
                 selectedEmail.setText(email);
                 selectedNote.setText(optionalNote);
-                /*
-
-
-
-
-
-                 */
-
         }
         return super.onOptionsItemSelected(item);
     }

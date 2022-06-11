@@ -51,6 +51,7 @@ public class AssessmentActivity extends AppCompatActivity {
             case R.id.detailedAssessment:
                 Intent intent=new Intent(AssessmentActivity.this,DetailedAssessmentActivity.class);
                 startActivity(intent);
+                this.finish();
         }
         return super.onOptionsItemSelected(item);
     }

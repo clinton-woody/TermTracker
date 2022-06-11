@@ -50,6 +50,7 @@ public class TermActivity extends AppCompatActivity {
             case R.id.detailedTerm:
                 Intent intent=new Intent(TermActivity.this,DetailedTermActivity.class);
                 startActivity(intent);
+                this.finish();
         }
         return super.onOptionsItemSelected(item);
     }

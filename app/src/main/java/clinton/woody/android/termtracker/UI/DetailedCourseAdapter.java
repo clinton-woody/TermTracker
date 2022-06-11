@@ -34,6 +34,12 @@ public class DetailedCourseAdapter extends RecyclerView.Adapter<DetailedCourseAd
                     int position=getAdapterPosition();
                     final Course current=mCourse.get(position);
                     Course.selectedCourse=current.getCourseID();
+                    Course.selectedTitle=current.getTitle();
+                    Course.selectedInstructor=current.getInstructorID();
+                    Course.selectedNote=current.getNote();
+                    Course.selectedStart=current.getStart();
+                    Course.selectedEnd=current.getEnd();
+                    Course.selectedStatus= current.getStatus();
                     DetailedCourseActivity.title=current.getTitle();
                     DetailedCourseActivity.editTitle.setText(DetailedCourseActivity.title);
                     DetailedCourseActivity.selectedTitle.setText(DetailedCourseActivity.title);
@@ -93,6 +99,7 @@ public class DetailedCourseAdapter extends RecyclerView.Adapter<DetailedCourseAd
     @Override
     public void onBindViewHolder(@NonNull DetailedCourseAdapter.DetailedCourseViewHolder holder, int position) {
         if(mCourse!=null){
+
             Course current=mCourse.get(position);
             String title=current.getTitle();
             holder.courseItemView1.setText(title);

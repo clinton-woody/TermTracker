@@ -16,8 +16,12 @@ public class Assessment {
     private String end;
     private String type;
 
-    public static int selectedAssessment = -1;
-    public static int greatestAssessment = 0;
+    public static int selectedAssessment = 0;
+    public static String selectedTitle;
+    public static String selectedStart;
+    public static String selectedEnd;
+    public static String selectedType;
+
     public Assessment(int assessmentID, int courseID, String title, String start, String end, String type) {
         this.assessmentID = assessmentID;
         this.courseID = courseID;

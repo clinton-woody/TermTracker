@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,9 +12,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import clinton.woody.android.termtracker.Database.Repository;
+import clinton.woody.android.termtracker.Entity.Course;
 import clinton.woody.android.termtracker.Entity.Term;
 import clinton.woody.android.termtracker.R;
 import clinton.woody.android.termtracker.DAO.TermDAO;
@@ -21,10 +24,6 @@ import clinton.woody.android.termtracker.DAO.TermDAO;
 
 public class DetailedTermActivity extends AppCompatActivity {
     private Repository repository;
-    private Term maxTerm;
-    public static Boolean active = false;
-    private int termID;
-    int userID;
     public static int id;
     public static String title;
     public static String start;
@@ -42,7 +41,6 @@ public class DetailedTermActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        active = true;
         Term.selectedTerm = 0;
         setContentView(R.layout.activity_detailed_term);
         editTitle=findViewById(R.id.termTitle);
@@ -71,15 +69,18 @@ public class DetailedTermActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case android.R.id.home:
-                active = false;
+                Intent intent=new Intent(DetailedTermActivity.this,TermActivity.class);
+                startActivity(intent);
                 this.finish();
                 return true;
+
+
             case R.id.updateTerm:
 
                 if (Term.selectedTerm == 0){
                     Term.selectedTitle=editTitle.getText().toString();
-                    Term.selectedStart=editTitle.getText().toString();
-                    Term.selectedEnd=editTitle.getText().toString();
+                    Term.selectedStart=editStart.getText().toString();
+                    Term.selectedEnd=editEnd.getText().toString();
                     Term current=new Term(Term.selectedTerm, 1, Term.selectedTitle, Term.selectedStart, Term.selectedEnd);
                     repository.insert(current);
                     DetailedTermActivity.title = null;
@@ -100,8 +101,8 @@ public class DetailedTermActivity extends AppCompatActivity {
                     detailedTermAdapter.setTerms(allTerms);
                 }else{
                     Term.selectedTitle=editTitle.getText().toString();
-                    Term.selectedStart=editTitle.getText().toString();
-                    Term.selectedEnd=editTitle.getText().toString();
+                    Term.selectedStart=editStart.getText().toString();
+                    Term.selectedEnd=editEnd.getText().toString();
                     Term current=new Term(Term.selectedTerm, 1, Term.selectedTitle, Term.selectedStart, Term.selectedEnd);
                     repository.update(current);
                     DetailedTermActivity.title = null;
@@ -128,7 +129,37 @@ public class DetailedTermActivity extends AppCompatActivity {
 
 
             case R.id.deleteTerm:
+
+
+                int termID = Term.selectedTerm;
+                List<Course> filteredCourses=new ArrayList<>();
+                for (Course c:repository.getAllCourses()){
+                    if(c.getTermID()==termID)filteredCourses.add(c);
+                }
+                if (filteredCourses.size()==0){
+                    Term term = new Term(Term.selectedTerm, 1, Term.selectedTitle, Term.selectedStart, Term.selectedEnd);
+                    repository.delete(term);
+                }
+
+
+
+/*
+                Term term = new Term(Term.selectedTerm, 1, Term.selectedTitle, Term.selectedStart, Term.selectedEnd);
+                repository.delete(term);
+*/
+
+                repository=new Repository(getApplication()); // These 7 lines are the Recycler View Updater
+                List<Term> allTerms=repository.getAllTerms();
+                RecyclerView recyclerView=findViewById(R.id.recyclerview_detailedTerm);
+                final DetailedTermAdapter detailedTermAdapter=new DetailedTermAdapter(this);
+                recyclerView.setAdapter(detailedTermAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                detailedTermAdapter.setTerms(allTerms);
+
+                Term.selectedTerm = 0; //This resets the selectedTerm to new mode
                 return true;
+
+
 
             case R.id.clearTerm:
                 Term.selectedTerm = 0;

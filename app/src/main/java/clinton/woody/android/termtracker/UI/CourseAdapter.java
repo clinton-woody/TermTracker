@@ -34,19 +34,15 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                     int position=getAdapterPosition();
                     final Course current=mCourse.get(position);
                     Course.selectedCourse=current.getCourseID();
-                    if (DetailedCourseActivity.active==false) {
-                        Intent intent = new Intent(context, AssessmentActivity.class);//use to be TermList.class
-                        intent.putExtra("id", current.getCourseID());
-                        intent.putExtra("title", current.getTitle());
-                        intent.putExtra("start", current.getStart());
-                        intent.putExtra("end", current.getEnd());
-                        intent.putExtra("status", current.getStatus());
-                        intent.putExtra("note", current.getNote());
-                        context.startActivity(intent);
-                    }
-                    else if (DetailedCourseActivity.active == true){
+                    Intent intent = new Intent(context, AssessmentActivity.class);//use to be TermList.class
+                    intent.putExtra("id", current.getCourseID());
+                    intent.putExtra("title", current.getTitle());
+                    intent.putExtra("start", current.getStart());
+                    intent.putExtra("end", current.getEnd());
+                    intent.putExtra("status", current.getStatus());
+                    intent.putExtra("note", current.getNote());
+                    context.startActivity(intent);
 
-                    }
                 }
             });
         }

@@ -28,7 +28,7 @@ public class Repository {
     private List<Instructor> mAllInstructors;
     private List<Term> mAllTerms;
     private List<User> mAllUsers;
-    private List<Term> mMaxTerms;
+
 
     private static int NUMBER_OF_THREADS=4;
     static final ExecutorService databaseExecutor= Executors.newFixedThreadPool(NUMBER_OF_THREADS);
@@ -55,21 +55,6 @@ public class Repository {
         }
         return mAllTerms;
     }
-
-    public List<Term>getMaxTerms() {
-        if (mMaxTerms == null) {
-            databaseExecutor.execute(() -> {
-                mMaxTerms = mTermDAO.getMaxTerm();
-            });
-        }
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            return mMaxTerms;
-        }
-
 
     public void insert(Term term){
         databaseExecutor.execute(()->{
