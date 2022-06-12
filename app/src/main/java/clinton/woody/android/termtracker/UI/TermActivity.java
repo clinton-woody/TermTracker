@@ -22,7 +22,6 @@ import clinton.woody.android.termtracker.R;
 public class TermActivity extends AppCompatActivity {
     private Repository repository;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,13 +29,16 @@ public class TermActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         repository=new Repository(getApplication());
+
         List<Term> allTerms= repository.getAllTerms();
+
         RecyclerView recyclerView=findViewById(R.id.recyclerview_term);
         final TermAdapter termAdapter=new TermAdapter(this);
         recyclerView.setAdapter(termAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         termAdapter.setTerms(allTerms);
     }
+
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_term, menu);
         return true;
@@ -49,8 +51,10 @@ public class TermActivity extends AppCompatActivity {
                 return true;
             case R.id.detailedTerm:
                 Intent intent=new Intent(TermActivity.this,DetailedTermActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 this.finish();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

@@ -141,13 +141,6 @@ public class DetailedTermActivity extends AppCompatActivity {
                     repository.delete(term);
                 }
 
-
-
-/*
-                Term term = new Term(Term.selectedTerm, 1, Term.selectedTitle, Term.selectedStart, Term.selectedEnd);
-                repository.delete(term);
-*/
-
                 repository=new Repository(getApplication()); // These 7 lines are the Recycler View Updater
                 List<Term> allTerms=repository.getAllTerms();
                 RecyclerView recyclerView=findViewById(R.id.recyclerview_detailedTerm);

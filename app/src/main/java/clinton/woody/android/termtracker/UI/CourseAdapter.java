@@ -32,9 +32,10 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                 @Override
                 public void onClick(View view) {
                     int position=getAdapterPosition();
-                    final Course current=mCourse.get(position);
+                    final Course current=mCourses.get(position);
                     Course.selectedCourse=current.getCourseID();
                     Intent intent = new Intent(context, AssessmentActivity.class);//use to be TermList.class
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.putExtra("id", current.getCourseID());
                     intent.putExtra("title", current.getTitle());
                     intent.putExtra("start", current.getStart());
@@ -47,7 +48,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             });
         }
     }
-    private List<Course> mCourse;
+    private List<Course> mCourses;
     private final Context context;
     private final LayoutInflater mInflater;
     public CourseAdapter(Context context){
@@ -58,13 +59,13 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     @Override
     public CourseAdapter.CourseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView=mInflater.inflate(R.layout.course_item,parent, false);
-        return new CourseAdapter.CourseViewHolder(itemView);
+        return new CourseViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CourseAdapter.CourseViewHolder holder, int position) {
-        if(mCourse!=null){
-            Course current=mCourse.get(position);
+        if(mCourses!=null){
+            Course current=mCourses.get(position);
             String title=current.getTitle();
             holder.courseItemView1.setText(title);
             String end=current.getEnd();
@@ -76,13 +77,13 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         }
 
     }
-    public void setCourses(List<Course> course) {
-        mCourse=course;
+    public void setCourses(List<Course> courses) {
+        mCourses=courses;
         notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-            return mCourse.size();
+            return mCourses.size();
     }
 }

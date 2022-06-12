@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import clinton.woody.android.termtracker.Database.Repository;
@@ -30,14 +31,19 @@ public class AssessmentActivity extends AppCompatActivity {
         courseID = Course.selectedCourse;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
+
+        Repository repository=new Repository(getApplication());
+        List<Assessment> filteredAssessments=new ArrayList<>();
+        for (Assessment a:repository.getAllAssessments()){
+            if(a.getCourseID()==courseID)filteredAssessments.add(a);
+        }
         RecyclerView recyclerView=findViewById(R.id.recyclerview_assessment);
-        Repository repo=new Repository(getApplication());
-        List<Assessment> assessments= repo.getAllAssessments();
         final AssessmentAdapter adapter=new AssessmentAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter.setAssessments(assessments);
+        adapter.setAssessments(filteredAssessments);
     }
+
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_assessment, menu);
         return true;
@@ -50,6 +56,7 @@ public class AssessmentActivity extends AppCompatActivity {
                 return true;
             case R.id.detailedAssessment:
                 Intent intent=new Intent(AssessmentActivity.this,DetailedAssessmentActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 this.finish();
         }

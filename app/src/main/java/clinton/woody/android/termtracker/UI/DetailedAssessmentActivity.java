@@ -16,15 +16,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import clinton.woody.android.termtracker.Database.Repository;
 import clinton.woody.android.termtracker.Entity.Assessment;
 import clinton.woody.android.termtracker.Entity.Course;
+import clinton.woody.android.termtracker.Entity.Term;
 import clinton.woody.android.termtracker.R;
 
 public class DetailedAssessmentActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private Repository repository;
+    int courseID;
     public static Boolean active = false;
     public static String type;
     public static String title;
@@ -56,13 +59,18 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
         selectedType=findViewById(R.id.selectedAType);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
-        repository=new Repository(getApplication());
-        List<Assessment> allAssessments= repository.getAllAssessments();
+
+        Repository repository=new Repository(getApplication());
+        List<Assessment> filteredAssessments=new ArrayList<>();
+        for (Assessment a:repository.getAllAssessments()){
+            if(a.getCourseID()==courseID)filteredAssessments.add(a);
+        }
         RecyclerView recyclerView=findViewById(R.id.recyclerview_assessment);
-        final DetailedAssessmentAdapter detailedAssessmentAdapter=new DetailedAssessmentAdapter(this);
-        recyclerView.setAdapter(detailedAssessmentAdapter);
+        final AssessmentAdapter adapter=new AssessmentAdapter(this);
+        recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        detailedAssessmentAdapter.setAssessments(allAssessments);
+        adapter.setAssessments(filteredAssessments);
+
         spinnerType=findViewById(R.id.assessmentType);
         ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.type_list, android.R.layout.simple_spinner_item );
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -109,13 +117,16 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
                     editEnd.setText(endDate);
                     spinnerType.setSelection(0);
                     selectedType.setText(type);
-                    repository=new Repository(getApplication());
-                    List<Assessment> allAssessments=repository.getAllAssessments();
+                    Repository repository=new Repository(getApplication());
+                    List<Assessment> filteredAssessments=new ArrayList<>();
+                    for (Assessment a:repository.getAllAssessments()){
+                        if(a.getCourseID()==courseID)filteredAssessments.add(a);
+                    }
                     RecyclerView recyclerView=findViewById(R.id.recyclerview_assessment);
-                    final DetailedAssessmentAdapter detailedAssessmentAdapter=new DetailedAssessmentAdapter(this);
-                    recyclerView.setAdapter(detailedAssessmentAdapter);
+                    final AssessmentAdapter adapter=new AssessmentAdapter(this);
+                    recyclerView.setAdapter(adapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(this));
-                    detailedAssessmentAdapter.setAssessments(allAssessments);
+                    adapter.setAssessments(filteredAssessments);
                     Assessment.selectedAssessment = 0;
                 }else{
                     if (spinnerType.getSelectedItemPosition() == 1){
@@ -142,16 +153,35 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
                     editEnd.setText(endDate);
                     spinnerType.setSelection(0);
                     selectedType.setText(type);
-                    repository=new Repository(getApplication());
-                    List<Assessment> allAssessments=repository.getAllAssessments();
+                    Repository repository=new Repository(getApplication());
+                    List<Assessment> filteredAssessments=new ArrayList<>();
+                    for (Assessment a:repository.getAllAssessments()){
+                        if(a.getCourseID()==courseID)filteredAssessments.add(a);
+                    }
                     RecyclerView recyclerView=findViewById(R.id.recyclerview_assessment);
-                    final DetailedAssessmentAdapter detailedAssessmentAdapter=new DetailedAssessmentAdapter(this);
-                    recyclerView.setAdapter(detailedAssessmentAdapter);
+                    final AssessmentAdapter adapter=new AssessmentAdapter(this);
+                    recyclerView.setAdapter(adapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(this));
-                    detailedAssessmentAdapter.setAssessments(allAssessments);
+                    adapter.setAssessments(filteredAssessments);
                     Assessment.selectedAssessment = 0;
                 }
             case R.id.deleteAssessment:
+
+                Assessment assessment=new Assessment(Assessment.selectedAssessment, Course.selectedCourse, Assessment.selectedTitle, Assessment.selectedStart, Assessment.selectedEnd, Assessment.selectedType);
+                repository.delete(assessment);
+                Repository repository=new Repository(getApplication());
+                List<Assessment> filteredAssessments=new ArrayList<>();
+                for (Assessment a:repository.getAllAssessments()){
+                    if(a.getCourseID()==courseID)filteredAssessments.add(a);
+                }
+                RecyclerView recyclerView=findViewById(R.id.recyclerview_assessment);
+                final AssessmentAdapter adapter=new AssessmentAdapter(this);
+                recyclerView.setAdapter(adapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                adapter.setAssessments(filteredAssessments);
+                Assessment.selectedAssessment = 0;
+
+
             case R.id.clearAssessment:
                 title = null;
                 startDate = null;

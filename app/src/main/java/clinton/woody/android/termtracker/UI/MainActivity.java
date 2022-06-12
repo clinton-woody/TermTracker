@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     public void toTerm(View view) {
 
         Intent intent = new Intent(MainActivity.this, TermActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         Repository repo=new Repository(getApplication());
 //        Term term1=new Term(1, 1, "testTerm1", "01June2021", "01June2021");//not needed

@@ -19,9 +19,8 @@ import clinton.woody.android.termtracker.Entity.Term;
 import clinton.woody.android.termtracker.R;
 
 public class CourseActivity extends AppCompatActivity {
-    Repository repository;
+    private Repository repository;
     int termID;
-    Term currentTerm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,15 +31,15 @@ public class CourseActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         repository=new Repository(getApplication());
 
-        RecyclerView recyclerView=findViewById(R.id.recyclerview_course);
-
-        final CourseAdapter courseAdapter=new CourseAdapter(this);
-        recyclerView.setAdapter(courseAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         List<Course> filteredCourses=new ArrayList<>();
         for (Course c:repository.getAllCourses()){
             if(c.getTermID()==termID)filteredCourses.add(c);
         }
+
+        RecyclerView recyclerView=findViewById(R.id.recyclerview_course);
+        final CourseAdapter courseAdapter=new CourseAdapter(this);
+        recyclerView.setAdapter(courseAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         courseAdapter.setCourses(filteredCourses);
     }
 
@@ -52,12 +51,17 @@ public class CourseActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                Intent termIntent=new Intent(CourseActivity.this,TermActivity.class);
+                termIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(termIntent);
                 this.finish();
                 return true;
             case R.id.detailedCourse:
-                Intent intent=new Intent(CourseActivity.this,DetailedCourseActivity.class);
-                startActivity(intent);
+                Intent detailedCourseIntent=new Intent(CourseActivity.this,DetailedCourseActivity.class);
+                detailedCourseIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(detailedCourseIntent);
                 this.finish();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

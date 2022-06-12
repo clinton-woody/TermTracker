@@ -17,7 +17,7 @@ import clinton.woody.android.termtracker.Entity.Instructor;
 import clinton.woody.android.termtracker.Entity.Term;
 import clinton.woody.android.termtracker.Entity.User;
 
-@Database(entities={Assessment.class, Course.class, Instructor.class, Term.class, User.class}, version=13, exportSchema = false)
+@Database(entities={Assessment.class, Course.class, Instructor.class, Term.class, User.class}, version=15, exportSchema = false)
 public abstract class TermDatabaseBuilder extends RoomDatabase {
     public abstract AssessmentDAO assessmentDAO();
     public abstract CourseDAO courseDAO();

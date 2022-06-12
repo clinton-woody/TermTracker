@@ -32,7 +32,7 @@ public class DetailedCourseAdapter extends RecyclerView.Adapter<DetailedCourseAd
                 @Override
                 public void onClick(View view) {
                     int position=getAdapterPosition();
-                    final Course current=mCourse.get(position);
+                    final Course current=mCourses.get(position);
                     Course.selectedCourse=current.getCourseID();
                     Course.selectedTitle=current.getTitle();
                     Course.selectedInstructor=current.getInstructorID();
@@ -50,6 +50,7 @@ public class DetailedCourseAdapter extends RecyclerView.Adapter<DetailedCourseAd
                     DetailedCourseActivity.editEnd.setText(DetailedCourseActivity.endDate);
                     DetailedCourseActivity.selectedEnd.setText(DetailedCourseActivity.endDate);
                     DetailedCourseActivity.status=current.getStatus();
+
                     if (DetailedCourseActivity.status.equals("Plan to Take")){
                         DetailedCourseActivity.spinnerStatus.setSelection(1);
                     }else if (DetailedCourseActivity.status.equals("In Progress")){
@@ -58,7 +59,11 @@ public class DetailedCourseAdapter extends RecyclerView.Adapter<DetailedCourseAd
                         DetailedCourseActivity.spinnerStatus.setSelection(3);
                     }else if (DetailedCourseActivity.status.equals("Dropped")){
                         DetailedCourseActivity.spinnerStatus.setSelection(4);
+                    }else{
+                        DetailedCourseActivity.spinnerStatus.setSelection(0);
                     }
+
+
                     DetailedCourseActivity.selectedStatus.setText(DetailedCourseActivity.status);
                     DetailedCourseActivity.instructorId=current.getInstructorID();//need method
                     if (DetailedCourseActivity.instructorId==1){
@@ -66,11 +71,16 @@ public class DetailedCourseAdapter extends RecyclerView.Adapter<DetailedCourseAd
                         DetailedCourseActivity.phone="555-123-4567";
                         DetailedCourseActivity.email="instructor1@school.edu";
                         DetailedCourseActivity.spinnerInstructor.setSelection(1);
-                    }else{
+                    }else if (DetailedCourseActivity.instructorId==2){
                         DetailedCourseActivity.name="Instructor2";
                         DetailedCourseActivity.phone="555-123-8901";
                         DetailedCourseActivity.email="instructor2@school.edu";
                         DetailedCourseActivity.spinnerInstructor.setSelection(2);
+                    }else{
+                        DetailedCourseActivity.name="Not Selected";
+                        DetailedCourseActivity.phone="Not Selected";
+                        DetailedCourseActivity.email="Not Selected";
+                        DetailedCourseActivity.spinnerInstructor.setSelection(0);
                     }
                     DetailedCourseActivity.selectedName.setText(DetailedCourseActivity.name);
                     DetailedCourseActivity.selectedPhone.setText(DetailedCourseActivity.phone);
@@ -82,7 +92,7 @@ public class DetailedCourseAdapter extends RecyclerView.Adapter<DetailedCourseAd
             });
         }
     }
-    private List<Course> mCourse;
+    private List<Course> mCourses;
     private final Context context;
     private final LayoutInflater mInflater;
     public DetailedCourseAdapter(Context context){
@@ -98,9 +108,9 @@ public class DetailedCourseAdapter extends RecyclerView.Adapter<DetailedCourseAd
 
     @Override
     public void onBindViewHolder(@NonNull DetailedCourseAdapter.DetailedCourseViewHolder holder, int position) {
-        if(mCourse!=null){
+        if(mCourses!=null){
 
-            Course current=mCourse.get(position);
+            Course current=mCourses.get(position);
             String title=current.getTitle();
             holder.courseItemView1.setText(title);
             String end=current.getEnd();
@@ -113,12 +123,12 @@ public class DetailedCourseAdapter extends RecyclerView.Adapter<DetailedCourseAd
 
     }
     public void setCourses(List<Course> course) {
-        mCourse=course;
+        mCourses=course;
         notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        return mCourse.size();
+        return mCourses.size();
     }
 }

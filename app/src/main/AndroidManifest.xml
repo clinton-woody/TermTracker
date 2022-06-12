@@ -10,15 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TermTracker">
         <activity
-            android:name=".UI.DetailedAssessmentAdapter"
-            android:exported="false" />
-        <activity
-            android:name=".UI.DetailedCourseAdapter"
-            android:exported="false" />
-        <activity
-            android:name=".UI.DetailedTermAdapter"
-            android:exported="false" />
-        <activity
             android:name=".UI.LoginActivity"
             android:exported="false"
             android:label="Login Screen"
