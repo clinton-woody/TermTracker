@@ -47,6 +47,7 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        courseID=Course.selectedCourse;
         active = true;
         setContentView(R.layout.activity_detailed_assessment);
         editTitle=findViewById(R.id.assessmentTitle);
@@ -60,13 +61,13 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
 
-        Repository repository=new Repository(getApplication());
+        repository=new Repository(getApplication());
         List<Assessment> filteredAssessments=new ArrayList<>();
         for (Assessment a:repository.getAllAssessments()){
             if(a.getCourseID()==courseID)filteredAssessments.add(a);
         }
         RecyclerView recyclerView=findViewById(R.id.recyclerview_assessment);
-        final AssessmentAdapter adapter=new AssessmentAdapter(this);
+        final DetailedAssessmentAdapter adapter=new DetailedAssessmentAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter.setAssessments(filteredAssessments);
@@ -92,10 +93,11 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
                 this.finish();
                 return true;
             case R.id.updateAssessment:
+                courseID=Course.selectedCourse;
                 if (Assessment.selectedAssessment == 0){
                     if (spinnerType.getSelectedItemPosition() == 1){
                         Assessment.selectedType = "Performance";
-                    }else if (spinnerType.getSelectedItemPosition() == 1){
+                    }else if (spinnerType.getSelectedItemPosition() == 2){
                         Assessment.selectedType = "Objective";
                     }else{
                         Assessment.selectedType = null;
@@ -117,13 +119,13 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
                     editEnd.setText(endDate);
                     spinnerType.setSelection(0);
                     selectedType.setText(type);
-                    Repository repository=new Repository(getApplication());
+                    repository=new Repository(getApplication());
                     List<Assessment> filteredAssessments=new ArrayList<>();
                     for (Assessment a:repository.getAllAssessments()){
                         if(a.getCourseID()==courseID)filteredAssessments.add(a);
                     }
                     RecyclerView recyclerView=findViewById(R.id.recyclerview_assessment);
-                    final AssessmentAdapter adapter=new AssessmentAdapter(this);
+                    final DetailedAssessmentAdapter adapter=new DetailedAssessmentAdapter(this);
                     recyclerView.setAdapter(adapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(this));
                     adapter.setAssessments(filteredAssessments);
@@ -131,7 +133,7 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
                 }else{
                     if (spinnerType.getSelectedItemPosition() == 1){
                         Assessment.selectedType = "Performance";
-                    }else if (spinnerType.getSelectedItemPosition() == 1){
+                    }else if (spinnerType.getSelectedItemPosition() == 2){
                         Assessment.selectedType = "Objective";
                     }else{
                         Assessment.selectedType = null;
@@ -153,29 +155,31 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
                     editEnd.setText(endDate);
                     spinnerType.setSelection(0);
                     selectedType.setText(type);
-                    Repository repository=new Repository(getApplication());
+
+                    repository=new Repository(getApplication());
                     List<Assessment> filteredAssessments=new ArrayList<>();
                     for (Assessment a:repository.getAllAssessments()){
                         if(a.getCourseID()==courseID)filteredAssessments.add(a);
                     }
                     RecyclerView recyclerView=findViewById(R.id.recyclerview_assessment);
-                    final AssessmentAdapter adapter=new AssessmentAdapter(this);
+                    final DetailedAssessmentAdapter adapter=new DetailedAssessmentAdapter(this);
                     recyclerView.setAdapter(adapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(this));
                     adapter.setAssessments(filteredAssessments);
                     Assessment.selectedAssessment = 0;
                 }
             case R.id.deleteAssessment:
+                courseID=Course.selectedCourse;
 
                 Assessment assessment=new Assessment(Assessment.selectedAssessment, Course.selectedCourse, Assessment.selectedTitle, Assessment.selectedStart, Assessment.selectedEnd, Assessment.selectedType);
                 repository.delete(assessment);
-                Repository repository=new Repository(getApplication());
+                repository=new Repository(getApplication());
                 List<Assessment> filteredAssessments=new ArrayList<>();
                 for (Assessment a:repository.getAllAssessments()){
                     if(a.getCourseID()==courseID)filteredAssessments.add(a);
                 }
                 RecyclerView recyclerView=findViewById(R.id.recyclerview_assessment);
-                final AssessmentAdapter adapter=new AssessmentAdapter(this);
+                final DetailedAssessmentAdapter adapter=new DetailedAssessmentAdapter(this);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
                 adapter.setAssessments(filteredAssessments);

@@ -35,6 +35,12 @@ public class DetailedAssessmentAdapter extends RecyclerView.Adapter<DetailedAsse
                     int position = getAdapterPosition();
                     final Assessment current = mAssessments.get(position);
                     Assessment.selectedAssessment = current.getAssessmentID();
+                    Assessment.selectedTitle= current.getTitle();
+                    Assessment.selectedStart= current.getStart();
+                    Assessment.selectedEnd= current.getEnd();
+                    Assessment.selectedType= current.getType();
+
+
                     DetailedAssessmentActivity.title=current.getTitle();
                     DetailedAssessmentActivity.editTitle.setText(DetailedAssessmentActivity.title);
                     DetailedAssessmentActivity.selectedTitle.setText(DetailedAssessmentActivity.title);
