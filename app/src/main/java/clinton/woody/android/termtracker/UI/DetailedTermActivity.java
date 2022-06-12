@@ -150,6 +150,15 @@ public class DetailedTermActivity extends AppCompatActivity {
                 detailedTermAdapter.setTerms(allTerms);
 
                 Term.selectedTerm = 0; //This resets the selectedTerm to new mode
+                title = null;
+                start = null;
+                end = null;
+                selectedTitle.setText(title);
+                editTitle.setText(title);
+                selectedStart.setText(start);
+                editStart.setText(start);
+                selectedEnd.setText(end);
+                editEnd.setText(end);
                 return true;
 
 
