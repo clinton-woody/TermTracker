@@ -177,7 +177,7 @@
                     android:id="@+id/assessmentStart"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:hint="New"/>
+                    android:hint="yyyy-MM-dd"/>
 
             </LinearLayout>
 
@@ -195,7 +195,7 @@
                     android:id="@+id/assessmentEnd"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:hint="New"/>
+                    android:hint="yyyy-MM-dd"/>
 
             </LinearLayout>
 
