@@ -60,7 +60,6 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
         selectedType=findViewById(R.id.selectedAType);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
-
         repository=new Repository(getApplication());
         List<Assessment> filteredAssessments=new ArrayList<>();
         for (Assessment a:repository.getAllAssessments()){
@@ -71,7 +70,6 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter.setAssessments(filteredAssessments);
-
         spinnerType=findViewById(R.id.assessmentType);
         ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.type_list, android.R.layout.simple_spinner_item );
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -168,9 +166,9 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
                     adapter.setAssessments(filteredAssessments);
                     Assessment.selectedAssessment = 0;
                 }
+                return true;
             case R.id.deleteAssessment:
                 courseID=Course.selectedCourse;
-
                 Assessment assessment=new Assessment(Assessment.selectedAssessment, Course.selectedCourse, Assessment.selectedTitle, Assessment.selectedStart, Assessment.selectedEnd, Assessment.selectedType);
                 repository.delete(assessment);
                 repository=new Repository(getApplication());
@@ -184,8 +182,7 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
                 adapter.setAssessments(filteredAssessments);
                 Assessment.selectedAssessment = 0;
-
-
+                return true;
             case R.id.clearAssessment:
                 title = null;
                 startDate = null;
@@ -200,14 +197,14 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
                 spinnerType.setSelection(0);
                 selectedType.setText(type);
                 Assessment.selectedAssessment = 0;
+                return true;
+            case R.id.notifyAssessmentStart:
+                return true;
+            case R.id.notifyAssessmentEnd:
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
-    /*
-
-
-     */
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {

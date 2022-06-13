@@ -110,7 +110,6 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
                 return true;
 
             case R.id.updateCourse:
-
                 if (Course.selectedCourse == 0){
                     if (spinnerStatus.getSelectedItemPosition() == 1){
                         Course.selectedStatus="Plan to Take";
@@ -159,7 +158,6 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
                     selectedPhone.setText(phone);
                     selectedEmail.setText(email);
                     selectedNote.setText(optionalNote);
-
                     repository=new Repository(getApplication());
                     List<Course> filteredCourses=new ArrayList<>();
                     for (Course c:repository.getAllCourses()){
@@ -171,6 +169,7 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
                     recyclerView.setLayoutManager(new LinearLayoutManager(this));
                     detailedCourseAdapter.setCourses(filteredCourses);
                     Course.selectedCourse = 0;
+                    return true;
                 }else{
                     if (spinnerStatus.getSelectedItemPosition() == 1){
                         Course.selectedStatus="Plan to Take";
@@ -219,7 +218,6 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
                     selectedPhone.setText(phone);
                     selectedEmail.setText(email);
                     selectedNote.setText(optionalNote);
-
                     repository=new Repository(getApplication());
                     List<Course> filteredCourses=new ArrayList<>();
                     for (Course c:repository.getAllCourses()){
@@ -231,10 +229,10 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
                     recyclerView.setLayoutManager(new LinearLayoutManager(this));
                     detailedCourseAdapter.setCourses(filteredCourses);
                     Course.selectedCourse = 0;
+                    return true;
                 }
 
             case R.id.deleteCourse:
-
                 int courseID = Course.selectedCourse;
                 List<Assessment> filteredAssessments=new ArrayList<>();
                 for (Assessment a:repository.getAllAssessments()){
@@ -244,7 +242,6 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
                     Course course = new Course(Course.selectedCourse, Term.selectedTerm, Course.selectedTitle, Course.selectedStart, Course.selectedEnd, Course.selectedInstructor, Course.selectedStatus, Course.selectedNote);
                     repository.delete(course);
                 }
-
                 repository=new Repository(getApplication());
                 List<Course> filteredCourses=new ArrayList<>();
                 for (Course c:repository.getAllCourses()){
@@ -255,8 +252,7 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
                 recyclerView.setAdapter(detailedCourseAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
                 detailedCourseAdapter.setCourses(filteredCourses);
-
-
+                return true;
 
             case R.id.clearCourse:
                 Course.selectedCourse = 0;
@@ -283,6 +279,24 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
                 selectedPhone.setText(phone);
                 selectedEmail.setText(email);
                 selectedNote.setText(optionalNote);
+                return true;
+
+            case R.id.shareNote:
+                Intent sendIntent= new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT,Course.selectedNote);
+                sendIntent.putExtra(Intent.EXTRA_TITLE, Course.selectedTitle + " Note");
+                sendIntent.setType("text/plain");
+                Intent shareIntent=Intent.createChooser(sendIntent, null);
+                startActivity(shareIntent);
+                return true;
+
+            case R.id.notifyCourseStart:
+                return true;
+
+            case R.id.notifyCourseEnd:
+                return true;
+
         }
         return super.onOptionsItemSelected(item);
     }

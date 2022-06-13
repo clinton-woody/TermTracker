@@ -13,4 +13,16 @@
         android:orderInCategory="100"
         android:id="@+id/clearCourse"/>
 
+    <item android:title="Share Note"
+        android:orderInCategory="100"
+        android:id="@+id/shareNote"/>
+
+    <item android:title="Notify Start Date"
+        android:orderInCategory="100"
+        android:id="@+id/notifyCourseStart"/>
+
+    <item android:title="Notify End Date"
+        android:orderInCategory="100"
+        android:id="@+id/notifyCourseEnd"/>
+
 </menu>
