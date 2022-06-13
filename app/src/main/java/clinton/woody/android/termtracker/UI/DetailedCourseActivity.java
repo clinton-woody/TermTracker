@@ -16,8 +16,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import clinton.woody.android.termtracker.Database.Repository;
 import clinton.woody.android.termtracker.Entity.Assessment;
@@ -59,8 +61,30 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
         termID = Term.selectedTerm;
         setContentView(R.layout.activity_detailed_course);
         editTitle=findViewById(R.id.courseTitle);
+
+
         editStart=findViewById(R.id.courseStart);
+        editStart.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
         editEnd=findViewById(R.id.courseEnd);
+        editEnd.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        String dateFormatter = "MM/dd/yy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormatter, Locale.US);
+
+
         editNote=findViewById(R.id.courseNote);
         spinnerInstructor=findViewById(R.id.courseInstructor);
         spinnerStatus=findViewById(R.id.courseStatus);
