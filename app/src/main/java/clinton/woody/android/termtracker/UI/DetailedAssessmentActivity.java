@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,13 +12,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import clinton.woody.android.termtracker.Database.Repository;
 import clinton.woody.android.termtracker.Entity.Assessment;
@@ -31,8 +38,8 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
     public static Boolean active = false;
     public static String type;
     public static String title;
-    public static String startDate;
-    public static String endDate;
+    public static String start;
+    public static String end;
     public static int typeIndex;
 
     public static EditText editTitle;
@@ -44,6 +51,12 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
     public static TextView selectedEnd;
     public static TextView selectedType;
 
+    DatePickerDialog.OnDateSetListener startDate;
+    DatePickerDialog.OnDateSetListener endDate;
+    final Calendar myCalendarStart = Calendar.getInstance();
+    String dateFormatter;
+    SimpleDateFormat simpleDateFormat;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,8 +64,74 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
         active = true;
         setContentView(R.layout.activity_detailed_assessment);
         editTitle=findViewById(R.id.assessmentTitle);
+
+        // Date Below This Line
+
+        dateFormatter = "MM/dd/yy";
+        simpleDateFormat = new SimpleDateFormat(dateFormatter, Locale.US);
+
         editStart=findViewById(R.id.assessmentStart);
+        editStart.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Date date;
+                String info=editStart.getText().toString();
+                if(info.equals(""))info="01/01/22";
+                try {
+                    myCalendarStart.setTime(simpleDateFormat.parse(info));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                new DatePickerDialog( DetailedAssessmentActivity.this, startDate,
+                        myCalendarStart.get(Calendar.YEAR), myCalendarStart.get(Calendar.MONTH),
+                        myCalendarStart.get(Calendar.DAY_OF_MONTH)).show();
+
+            }
+        });
+        startDate=new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
+                myCalendarStart.set(Calendar.YEAR,year);
+                myCalendarStart.set(Calendar.MONTH,monthOfYear);
+                myCalendarStart.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+                updateLabelStart();
+            }
+        };
+
         editEnd=findViewById(R.id.assessmentEnd);
+        editEnd.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Date date;
+                String info=editEnd.getText().toString();
+                if(info.equals(""))info="01/01/22";
+                try {
+                    myCalendarStart.setTime(simpleDateFormat.parse(info));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                new DatePickerDialog( DetailedAssessmentActivity.this, endDate,
+                        myCalendarStart.get(Calendar.YEAR), myCalendarStart.get(Calendar.MONTH),
+                        myCalendarStart.get(Calendar.DAY_OF_MONTH)).show();
+
+            }
+        });
+        endDate=new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
+                myCalendarStart.set(Calendar.YEAR,year);
+                myCalendarStart.set(Calendar.MONTH,monthOfYear);
+                myCalendarStart.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+                updateLabelEnd();
+            }
+        };
+
+
+
+        // Date Above This Line
+
         spinnerType=findViewById(R.id.assessmentType);
         selectedTitle=findViewById(R.id.selectedATitle);
         selectedStart=findViewById(R.id.selectedAStart);
@@ -75,6 +154,14 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerType.setAdapter(adapter3);
         spinnerType.setOnItemSelectedListener(this);
+    }
+
+    private void updateLabelStart(){
+        editStart.setText(simpleDateFormat.format(myCalendarStart.getTime()));
+    }
+
+    private void updateLabelEnd(){
+        editEnd.setText(simpleDateFormat.format(myCalendarStart.getTime()));
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -111,10 +198,10 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
                     type = null;
                     selectedTitle.setText(title);
                     editTitle.setText(title);
-                    selectedStart.setText(startDate);
-                    editStart.setText(startDate);
-                    selectedEnd.setText(endDate);
-                    editEnd.setText(endDate);
+                    selectedStart.setText(start);
+                    editStart.setText(start);
+                    selectedEnd.setText(end);
+                    editEnd.setText(end);
                     spinnerType.setSelection(0);
                     selectedType.setText(type);
                     repository=new Repository(getApplication());
@@ -147,10 +234,10 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
                     type = null;
                     selectedTitle.setText(title);
                     editTitle.setText(title);
-                    selectedStart.setText(startDate);
-                    editStart.setText(startDate);
-                    selectedEnd.setText(endDate);
-                    editEnd.setText(endDate);
+                    selectedStart.setText(start);
+                    editStart.setText(start);
+                    selectedEnd.setText(end);
+                    editEnd.setText(end);
                     spinnerType.setSelection(0);
                     selectedType.setText(type);
 
@@ -190,18 +277,37 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
                 type = null;
                 selectedTitle.setText(title);
                 editTitle.setText(title);
-                selectedStart.setText(startDate);
-                editStart.setText(startDate);
-                selectedEnd.setText(endDate);
-                editEnd.setText(endDate);
+                selectedStart.setText(start);
+                editStart.setText(start);
+                selectedEnd.setText(end);
+                editEnd.setText(end);
                 spinnerType.setSelection(0);
                 selectedType.setText(type);
                 Assessment.selectedAssessment = 0;
                 return true;
+
             case R.id.notifyAssessmentStart:
+                String startFromScreen=editStart.getText().toString();
+                Date d1=null;
+                try{
+                    d1=simpleDateFormat.parse(startFromScreen);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Intent intent1=new Intent(DetailedAssessmentActivity.this,MyReceiver1.class);
                 return true;
+
             case R.id.notifyAssessmentEnd:
+                String dateFromScreen=editEnd.getText().toString();
+                Date d2=null;
+                try{
+                    d2=simpleDateFormat.parse(dateFromScreen);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Intent intent2=new Intent(DetailedAssessmentActivity.this,MyReceiver1.class);
                 return true;
+
         }
         return super.onOptionsItemSelected(item);
     }

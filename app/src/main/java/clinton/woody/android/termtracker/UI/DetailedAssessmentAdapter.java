@@ -44,12 +44,12 @@ public class DetailedAssessmentAdapter extends RecyclerView.Adapter<DetailedAsse
                     DetailedAssessmentActivity.title=current.getTitle();
                     DetailedAssessmentActivity.editTitle.setText(DetailedAssessmentActivity.title);
                     DetailedAssessmentActivity.selectedTitle.setText(DetailedAssessmentActivity.title);
-                    DetailedAssessmentActivity.startDate=current.getStart();
-                    DetailedAssessmentActivity.editStart.setText(DetailedAssessmentActivity.startDate);
-                    DetailedAssessmentActivity.selectedStart.setText(DetailedAssessmentActivity.startDate);
-                    DetailedAssessmentActivity.endDate=current.getEnd();
-                    DetailedAssessmentActivity.editEnd.setText(DetailedAssessmentActivity.endDate);
-                    DetailedAssessmentActivity.selectedEnd.setText(DetailedAssessmentActivity.endDate);
+                    DetailedAssessmentActivity.start=current.getStart();
+                    DetailedAssessmentActivity.editStart.setText(DetailedAssessmentActivity.start);
+                    DetailedAssessmentActivity.selectedStart.setText(DetailedAssessmentActivity.start);
+                    DetailedAssessmentActivity.end=current.getEnd();
+                    DetailedAssessmentActivity.editEnd.setText(DetailedAssessmentActivity.end);
+                    DetailedAssessmentActivity.selectedEnd.setText(DetailedAssessmentActivity.end);
                     DetailedAssessmentActivity.type=current.getType();
                     DetailedAssessmentActivity.selectedType.setText(DetailedAssessmentActivity.type);
                     if (DetailedAssessmentActivity.type.equals("Performance")){

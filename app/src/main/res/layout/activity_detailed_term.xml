@@ -12,7 +12,7 @@
         android:layout_width="409dp"
         android:layout_height="175dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/termScrollview2"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp"
         android:background="@color/Mantis">
@@ -101,9 +101,9 @@
     <ScrollView
         android:id="@+id/termScrollview2"
         android:layout_width="409dp"
-        android:layout_height="300dp"
+        android:layout_height="175dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/termScrollview1"
+        app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
 
@@ -187,9 +187,9 @@
     <ScrollView
         android:id="@+id/termScrollview3"
         android:layout_width="409dp"
-        android:layout_height="600dp"
+        android:layout_height="175dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/termScrollview2"
+        app:layout_constraintTop_toBottomOf="@+id/termScrollview1"
         android:background="@color/Pomona"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
