@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -61,6 +64,7 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         courseID=Course.selectedCourse;
+        Assessment.selectedAssessment = 0;
         active = true;
         setContentView(R.layout.activity_detailed_assessment);
         editTitle=findViewById(R.id.assessmentTitle);
@@ -178,7 +182,7 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
                 this.finish();
                 return true;
             case R.id.updateAssessment:
-                courseID=Course.selectedCourse;
+                //courseID=Course.selectedCourse;
                 if (Assessment.selectedAssessment == 0){
                     if (spinnerType.getSelectedItemPosition() == 1){
                         Assessment.selectedType = "Performance";
@@ -193,9 +197,9 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
                     Assessment assessment=new Assessment(Assessment.selectedAssessment, Course.selectedCourse, Assessment.selectedTitle, Assessment.selectedStart, Assessment.selectedEnd, Assessment.selectedType);
                     repository.insert(assessment);
                     title = null;
-                    startDate = null;
-                    endDate = null;
-                    type = null;
+                    start = "";
+                    end = "";
+                    type =  "";
                     selectedTitle.setText(title);
                     editTitle.setText(title);
                     selectedStart.setText(start);
@@ -215,13 +219,14 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
                     recyclerView.setLayoutManager(new LinearLayoutManager(this));
                     adapter.setAssessments(filteredAssessments);
                     Assessment.selectedAssessment = 0;
+                    return true;
                 }else{
                     if (spinnerType.getSelectedItemPosition() == 1){
                         Assessment.selectedType = "Performance";
                     }else if (spinnerType.getSelectedItemPosition() == 2){
                         Assessment.selectedType = "Objective";
                     }else{
-                        Assessment.selectedType = null;
+                        Assessment.selectedType = "";
                     }
                     Assessment.selectedEnd = editEnd.getText().toString();
                     Assessment.selectedStart = editStart.getText().toString();
@@ -229,9 +234,9 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
                     Assessment assessment=new Assessment(Assessment.selectedAssessment, Course.selectedCourse, Assessment.selectedTitle, Assessment.selectedStart, Assessment.selectedEnd, Assessment.selectedType);
                     repository.update(assessment);
                     title = null;
-                    startDate = null;
-                    endDate = null;
-                    type = null;
+                    start = "";
+                    end = "";
+                    type =  "";
                     selectedTitle.setText(title);
                     editTitle.setText(title);
                     selectedStart.setText(start);
@@ -272,9 +277,9 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
                 return true;
             case R.id.clearAssessment:
                 title = null;
-                startDate = null;
-                endDate = null;
-                type = null;
+                start = "";
+                end = "";
+                type = "";
                 selectedTitle.setText(title);
                 editTitle.setText(title);
                 selectedStart.setText(start);
@@ -294,8 +299,13 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                Intent intent1=new Intent(DetailedAssessmentActivity.this,MyReceiver1.class);
-                return true;
+                Long trigger1=d1.getTime();   //*********************
+                Intent intent1=new Intent(DetailedAssessmentActivity.this,MyReceiver1.class);   //*********************
+                intent1.putExtra("key", "Assessment "+ Assessment.selectedTitle + " Starts Today");   //*********************
+                PendingIntent sender1=PendingIntent.getBroadcast(DetailedAssessmentActivity.this, ++MainActivity.alertNumber,intent1,0);   //*********************
+                AlarmManager alarmManager=(AlarmManager)getSystemService(Context.ALARM_SERVICE);   //*********************
+                alarmManager.set(AlarmManager.RTC_WAKEUP, trigger1, sender1);   //*********************
+                return true;   //*********************
 
             case R.id.notifyAssessmentEnd:
                 String dateFromScreen=editEnd.getText().toString();
@@ -305,8 +315,13 @@ public class DetailedAssessmentActivity extends AppCompatActivity implements Ada
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                Intent intent2=new Intent(DetailedAssessmentActivity.this,MyReceiver1.class);
-                return true;
+                Long trigger2=d2.getTime();   //*********************
+                Intent intent2=new Intent(DetailedAssessmentActivity.this,MyReceiver1.class);   //*********************
+                intent2.putExtra("key", "Assessment "+ Assessment.selectedTitle + " Ends Today");   //*********************
+                PendingIntent sender2=PendingIntent.getBroadcast(DetailedAssessmentActivity.this, ++MainActivity.alertNumber,intent2,0);   //*********************
+                alarmManager=(AlarmManager)getSystemService(Context.ALARM_SERVICE);   //*********************
+                alarmManager.set(AlarmManager.RTC_WAKEUP, trigger2, sender2);   //*********************
+                return true;   //*********************
 
         }
         return super.onOptionsItemSelected(item);

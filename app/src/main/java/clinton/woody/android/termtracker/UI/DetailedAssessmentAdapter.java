@@ -52,10 +52,13 @@ public class DetailedAssessmentAdapter extends RecyclerView.Adapter<DetailedAsse
                     DetailedAssessmentActivity.selectedEnd.setText(DetailedAssessmentActivity.end);
                     DetailedAssessmentActivity.type=current.getType();
                     DetailedAssessmentActivity.selectedType.setText(DetailedAssessmentActivity.type);
+
                     if (DetailedAssessmentActivity.type.equals("Performance")){
                         DetailedAssessmentActivity.spinnerType.setSelection(1);
                     }else if(DetailedAssessmentActivity.type.equals("Objective")){
                         DetailedAssessmentActivity.spinnerType.setSelection(2);
+                    }else{
+                        DetailedAssessmentActivity.spinnerType.setSelection(0);
                     }
 
                     /*

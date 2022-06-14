@@ -193,7 +193,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_margin="10dp">
+                android:layout_margin="20dp">
 
              </LinearLayout>
 
@@ -219,7 +219,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_margin="2dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -233,7 +234,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_margin="2dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -251,7 +253,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_margin="2dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -269,7 +272,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_margin="2dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -287,7 +291,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_margin="2dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -304,7 +309,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_margin="2dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -321,7 +327,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_margin="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"

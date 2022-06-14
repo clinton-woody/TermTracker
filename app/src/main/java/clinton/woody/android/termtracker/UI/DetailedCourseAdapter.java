@@ -37,18 +37,18 @@ public class DetailedCourseAdapter extends RecyclerView.Adapter<DetailedCourseAd
                     Course.selectedTitle=current.getTitle();
                     Course.selectedInstructor=current.getInstructorID();
                     Course.selectedNote=current.getNote();
-                    Course.selectedStart=current.getStart();
-                    Course.selectedEnd=current.getEnd();
+                    Course.selectedStart=current.getStart();   //*********************
+                    Course.selectedEnd=current.getEnd();   //*********************
                     Course.selectedStatus= current.getStatus();
                     DetailedCourseActivity.title=current.getTitle();
                     DetailedCourseActivity.editTitle.setText(DetailedCourseActivity.title);
                     DetailedCourseActivity.selectedTitle.setText(DetailedCourseActivity.title);
-                    DetailedCourseActivity.start=current.getStart();
-                    DetailedCourseActivity.editStart.setText(DetailedCourseActivity.start);
-                    DetailedCourseActivity.selectedStart.setText(DetailedCourseActivity.start);
-                    DetailedCourseActivity.end=current.getEnd();
-                    DetailedCourseActivity.editEnd.setText(DetailedCourseActivity.end);
-                    DetailedCourseActivity.selectedEnd.setText(DetailedCourseActivity.end);
+                    DetailedCourseActivity.start=current.getStart();   //*********************
+                    DetailedCourseActivity.editStart.setText(DetailedCourseActivity.start);   //*********************
+                    DetailedCourseActivity.selectedStart.setText(DetailedCourseActivity.start);   //*********************
+                    DetailedCourseActivity.end=current.getEnd();   //*********************
+                    DetailedCourseActivity.editEnd.setText(DetailedCourseActivity.end);   //*********************
+                    DetailedCourseActivity.selectedEnd.setText(DetailedCourseActivity.end);   //*********************
                     DetailedCourseActivity.status=current.getStatus();
 
                     if (DetailedCourseActivity.status.equals("Plan to Take")){

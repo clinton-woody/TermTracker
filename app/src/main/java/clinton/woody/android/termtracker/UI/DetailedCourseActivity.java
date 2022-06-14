@@ -77,62 +77,62 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
 
         // Date Below This Line
 
-        dateFormatter = "MM/dd/yy";
-        simpleDateFormat = new SimpleDateFormat(dateFormatter, Locale.US);
+        dateFormatter = "MM/dd/yy";   //*********************
+        simpleDateFormat = new SimpleDateFormat(dateFormatter, Locale.US);   //*********************
 
-        editStart=findViewById(R.id.courseStart);
-        editStart.setOnClickListener(new View.OnClickListener(){
+        editStart=findViewById(R.id.courseStart);   //*********************
+        editStart.setOnClickListener(new View.OnClickListener(){   //*********************
 
             @Override
-            public void onClick(View view) {
-                Date date;
-                String info=editStart.getText().toString();
-                if(info.equals(""))info="01/01/22";
-                try {
-                    myCalendarStart.setTime(simpleDateFormat.parse(info));
-                } catch (ParseException e) {
-                    e.printStackTrace();
+            public void onClick(View view) {   //*********************
+                Date date;   //*********************
+                String info=editStart.getText().toString();   //*********************
+                if(info.equals(""))info="01/01/22";   //*********************
+                try {   //*********************
+                    myCalendarStart.setTime(simpleDateFormat.parse(info));   //*********************
+                } catch (ParseException e) {   //*********************
+                    e.printStackTrace();   //*********************
                 }
-                new DatePickerDialog( DetailedCourseActivity.this, startDate,
-                        myCalendarStart.get(Calendar.YEAR), myCalendarStart.get(Calendar.MONTH),
-                        myCalendarStart.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog( DetailedCourseActivity.this, startDate,   //*********************
+                        myCalendarStart.get(Calendar.YEAR), myCalendarStart.get(Calendar.MONTH),   //*********************
+                        myCalendarStart.get(Calendar.DAY_OF_MONTH)).show();   //*********************
             }
         });
         startDate=new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
-                myCalendarStart.set(Calendar.YEAR,year);
-                myCalendarStart.set(Calendar.MONTH,monthOfYear);
-                myCalendarStart.set(Calendar.DAY_OF_MONTH,dayOfMonth);
-                updateLabelStart();
+            public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {   //*********************
+                myCalendarStart.set(Calendar.YEAR,year);   //*********************
+                myCalendarStart.set(Calendar.MONTH,monthOfYear);   //*********************
+                myCalendarStart.set(Calendar.DAY_OF_MONTH,dayOfMonth);   //*********************
+                updateLabelStart();   //*********************
             }
         };
 
-        editEnd=findViewById(R.id.courseEnd);
-        editEnd.setOnClickListener(new View.OnClickListener(){
+        editEnd=findViewById(R.id.courseEnd);   //*********************
+        editEnd.setOnClickListener(new View.OnClickListener(){   //*********************
 
             @Override
-            public void onClick(View view) {
-                Date date;
-                String info=editEnd.getText().toString();
-                if(info.equals(""))info="01/01/22";
-                try {
-                    myCalendarStart.setTime(simpleDateFormat.parse(info));
-                } catch (ParseException e) {
-                    e.printStackTrace();
+            public void onClick(View view) {   //*********************
+                Date date;   //*********************
+                String info=editEnd.getText().toString();   //*********************
+                if(info.equals(""))info="01/01/22";   //*********************
+                try {   //*********************
+                    myCalendarStart.setTime(simpleDateFormat.parse(info));   //*********************
+                } catch (ParseException e) {   //*********************
+                    e.printStackTrace();   //*********************
                 }
-                new DatePickerDialog( DetailedCourseActivity.this, endDate,
-                        myCalendarStart.get(Calendar.YEAR), myCalendarStart.get(Calendar.MONTH),
-                        myCalendarStart.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog( DetailedCourseActivity.this, endDate,   //*********************
+                        myCalendarStart.get(Calendar.YEAR), myCalendarStart.get(Calendar.MONTH),   //*********************
+                        myCalendarStart.get(Calendar.DAY_OF_MONTH)).show();   //*********************
             }
         });
         endDate=new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
-                myCalendarStart.set(Calendar.YEAR,year);
-                myCalendarStart.set(Calendar.MONTH,monthOfYear);
-                myCalendarStart.set(Calendar.DAY_OF_MONTH,dayOfMonth);
-                updateLabelEnd();
+            public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {   //*********************
+                myCalendarStart.set(Calendar.YEAR,year);   //*********************
+                myCalendarStart.set(Calendar.MONTH,monthOfYear);   //*********************
+                myCalendarStart.set(Calendar.DAY_OF_MONTH,dayOfMonth);   //*********************
+                updateLabelEnd();   //*********************
             }
         };
 
@@ -142,8 +142,8 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
         spinnerInstructor=findViewById(R.id.courseInstructor);
         spinnerStatus=findViewById(R.id.courseStatus);
         selectedTitle=findViewById(R.id.selectedCTitle);
-        selectedStart=findViewById(R.id.selectedCStart);
-        selectedEnd=findViewById(R.id.selectedCEnd);
+        selectedStart=findViewById(R.id.selectedCStart);   //*********************
+        selectedEnd=findViewById(R.id.selectedCEnd);   //*********************
         selectedStatus=findViewById(R.id.selectedCStatus);
         selectedName=findViewById(R.id.selectedCInstructorName);
         selectedPhone=findViewById(R.id.selectedCInstructorPhone);
@@ -173,13 +173,13 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
         spinnerStatus.setOnItemSelectedListener(this);
     }
 
-    private void updateLabelStart(){
-        editStart.setText(simpleDateFormat.format(myCalendarStart.getTime()));
-    }
+    private void updateLabelStart(){   //*********************
+        editStart.setText(simpleDateFormat.format(myCalendarStart.getTime()));   //*********************
+    }   //*********************
 
-    private void updateLabelEnd(){
-        editEnd.setText(simpleDateFormat.format(myCalendarStart.getTime()));
-    }
+    private void updateLabelEnd(){   //*********************
+        editEnd.setText(simpleDateFormat.format(myCalendarStart.getTime()));   //*********************
+    }   //*********************
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_detailed_course, menu);
@@ -214,15 +214,15 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
                     }else{
                         Course.selectedInstructor=0;
                     }
-                    Course.selectedEnd=editEnd.getText().toString();
-                    Course.selectedStart =editStart.getText().toString();
+                    Course.selectedEnd=editEnd.getText().toString();   //*********************
+                    Course.selectedStart =editStart.getText().toString();   //*********************
                     Course.selectedTitle=editTitle.getText().toString();
                     Course.selectedNote=editNote.getText().toString();
                     Course current=new Course(Course.selectedCourse, Term.selectedTerm, Course.selectedTitle, Course.selectedStart, Course.selectedEnd, Course.selectedInstructor, Course.selectedStatus, Course.selectedNote);
                     repository.insert(current);
                     DetailedCourseActivity.title = null;
-                    DetailedCourseActivity.start = null;
-                    DetailedCourseActivity.end = null;
+                    DetailedCourseActivity.start = "";   //*********************
+                    DetailedCourseActivity.end = "";   //*********************
                     DetailedCourseActivity.optionalNote = null;
                     DetailedCourseActivity.status = null;
                     DetailedCourseActivity.name = null;
@@ -231,10 +231,10 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
                     DetailedCourseActivity.optionalNote = null;
                     selectedTitle.setText(title);
                     editTitle.setText(title);
-                    selectedStart.setText(start);
-                    editStart.setText(start);
-                    selectedEnd.setText(end);
-                    editEnd.setText(end);
+                    selectedStart.setText(start);   //*********************
+                    editStart.setText(start);   //*********************
+                    selectedEnd.setText(end);   //*********************
+                    editEnd.setText(end);   //*********************
                     editNote.setText(optionalNote);
                     spinnerStatus.setSelection(0);
                     selectedStatus.setText(status);
@@ -274,15 +274,15 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
                     }else{
                         Course.selectedInstructor=0;
                     }
-                    Course.selectedEnd=editEnd.getText().toString();
-                    Course.selectedStart =editStart.getText().toString();
+                    Course.selectedEnd=editEnd.getText().toString();   //*********************
+                    Course.selectedStart =editStart.getText().toString();   //*********************
                     Course.selectedTitle=editTitle.getText().toString();
                     Course.selectedNote=editNote.getText().toString();
                     Course current=new Course(Course.selectedCourse, Term.selectedTerm, Course.selectedTitle, Course.selectedStart, Course.selectedEnd, Course.selectedInstructor, Course.selectedStatus, Course.selectedNote);
                     repository.update(current);
                     title = null;
-                    startDate = null;
-                    endDate = null;
+                    start = "";   //*********************
+                    end = "";   //*********************
                     optionalNote = null;
                     status = null;
                     name = null;
@@ -291,10 +291,10 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
                     optionalNote = null;
                     selectedTitle.setText(title);
                     editTitle.setText(title);
-                    selectedStart.setText(start);
-                    editStart.setText(start);
-                    selectedEnd.setText(end);
-                    editEnd.setText(end);
+                    selectedStart.setText(start);   //*********************
+                    editStart.setText(start);   //*********************
+                    selectedEnd.setText(end);   //*********************
+                    editEnd.setText(end);   //*********************
                     editNote.setText(optionalNote);
                     spinnerStatus.setSelection(0);
                     selectedStatus.setText(status);
@@ -342,8 +342,8 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
             case R.id.clearCourse:
                 Course.selectedCourse = 0;
                 title = null;
-                startDate = null;
-                endDate = null;
+                start = "";   //*********************
+                end = "";   //*********************
                 optionalNote = null;
                 status = null;
                 name = null;
@@ -352,10 +352,10 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
                 optionalNote = null;
                 selectedTitle.setText(title);
                 editTitle.setText(title);
-                selectedStart.setText(start);
-                editStart.setText(start);
-                selectedEnd.setText(end);
-                editEnd.setText(end);
+                selectedStart.setText(start);   //*********************
+                editStart.setText(start);   //*********************
+                selectedEnd.setText(end);   //*********************
+                editEnd.setText(end);   //*********************
                 editNote.setText(optionalNote);
                 spinnerStatus.setSelection(0);
                 selectedStatus.setText(status);
@@ -376,38 +376,38 @@ public class DetailedCourseActivity extends AppCompatActivity implements Adapter
                 startActivity(shareIntent);
                 return true;
 
-            case R.id.notifyCourseStart:
-                String startFromScreen=editStart.getText().toString();
-                Date d1=null;
-                try{
-                    d1=simpleDateFormat.parse(startFromScreen);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                Long trigger1=d1.getTime();
-                Intent intent1=new Intent(DetailedCourseActivity.this,MyReceiver1.class);
-                intent1.putExtra("key", "Course "+ Course.selectedTitle + " Starts Today");
-                PendingIntent sender1=PendingIntent.getBroadcast(DetailedCourseActivity.this, ++MainActivity.alertNumber,intent1,0);
-                AlarmManager alarmManager=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
-                alarmManager.set(AlarmManager.RTC_WAKEUP, trigger1, sender1);
-                return true;
+            case R.id.notifyCourseStart:   //*********************
+                String startFromScreen=editStart.getText().toString();   //*********************
+                Date d1=null;   //*********************
+                try{   //*********************
+                    d1=simpleDateFormat.parse(startFromScreen);   //*********************
+                } catch (ParseException e) {   //*********************
+                    e.printStackTrace();   //*********************
+                }   //*********************
+                Long trigger1=d1.getTime();   //*********************
+                Intent intent1=new Intent(DetailedCourseActivity.this,MyReceiver1.class);   //*********************
+                intent1.putExtra("key", "Course "+ Course.selectedTitle + " Starts Today");   //*********************
+                PendingIntent sender1=PendingIntent.getBroadcast(DetailedCourseActivity.this, ++MainActivity.alertNumber,intent1,0);   //*********************
+                AlarmManager alarmManager=(AlarmManager)getSystemService(Context.ALARM_SERVICE);   //*********************
+                alarmManager.set(AlarmManager.RTC_WAKEUP, trigger1, sender1);   //*********************
+                return true;   //*********************
 
-            case R.id.notifyCourseEnd:
-                String dateFromScreen=editEnd.getText().toString();
-                Date d2=null;
+            case R.id.notifyCourseEnd:   //*********************
+                String dateFromScreen=editEnd.getText().toString();   //*********************
+                Date d2=null;   //*********************
 
-                try{
-                    d2=simpleDateFormat.parse(dateFromScreen);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                Long trigger2=d2.getTime();
-                Intent intent2=new Intent(DetailedCourseActivity.this,MyReceiver1.class);
-                intent2.putExtra("key", "Course "+ Course.selectedTitle + " Ends Today");
-                PendingIntent sender2=PendingIntent.getBroadcast(DetailedCourseActivity.this, ++MainActivity.alertNumber,intent2,0);
-                alarmManager=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
-                alarmManager.set(AlarmManager.RTC_WAKEUP, trigger2, sender2);
-                return true;
+                try{   //*********************
+                    d2=simpleDateFormat.parse(dateFromScreen);   //*********************
+                } catch (ParseException e) {   //*********************
+                    e.printStackTrace();   //*********************
+                }   //*********************
+                Long trigger2=d2.getTime();   //*********************
+                Intent intent2=new Intent(DetailedCourseActivity.this,MyReceiver1.class);   //*********************
+                intent2.putExtra("key", "Course "+ Course.selectedTitle + " Ends Today");   //*********************
+                PendingIntent sender2=PendingIntent.getBroadcast(DetailedCourseActivity.this, ++MainActivity.alertNumber,intent2,0);   //*********************
+                alarmManager=(AlarmManager)getSystemService(Context.ALARM_SERVICE);   //*********************
+                alarmManager.set(AlarmManager.RTC_WAKEUP, trigger2, sender2);   //*********************
+                return true;   //*********************
 
         }
         return super.onOptionsItemSelected(item);
