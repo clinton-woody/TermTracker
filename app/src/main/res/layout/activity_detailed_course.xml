@@ -348,7 +348,7 @@
     </ScrollView>
 
     <ScrollView
-        android:id="@+id/termScrollview3"
+        android:id="@+id/courseScrollview3"
         android:layout_width="409dp"
         android:layout_height="175dp"
         app:layout_constraintLeft_toLeftOf="parent"

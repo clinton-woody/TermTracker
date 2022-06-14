@@ -9,12 +9,13 @@
 
     <ScrollView
         android:id="@+id/termScrollview1"
-        android:layout_width="407dp"
-        android:layout_height="135dp"
-        android:layout_marginTop="4dp"
-        android:background="@color/Mantis"
+        android:layout_width="409dp"
+        android:layout_height="175dp"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/termScrollview2"
-        tools:layout_editor_absoluteX="1dp">
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp"
+        android:background="@color/Mantis">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -99,10 +100,12 @@
 
     <ScrollView
         android:id="@+id/termScrollview2"
-        android:layout_width="410dp"
-        android:layout_height="140dp"
+        android:layout_width="409dp"
+        android:layout_height="175dp"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="1dp">
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -183,11 +186,13 @@
 
     <ScrollView
         android:id="@+id/termScrollview3"
-        android:layout_width="395dp"
-        android:layout_height="413dp"
+        android:layout_width="409dp"
+        android:layout_height="175dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/termScrollview1"
         android:background="@color/Pomona"
-        app:layout_constraintStart_toEndOf="@+id/termScrollview2"
-        tools:layout_editor_absoluteY="-1dp">
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id='@+id/recyclerview_detailedTerm'
