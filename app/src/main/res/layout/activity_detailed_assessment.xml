@@ -181,7 +181,7 @@
                     android:id="@+id/assessmentStart"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:hint="yyyy-MM-dd"/>
+                    android:hint="Double Tap for Date"/>
 
             </LinearLayout>
 
@@ -200,7 +200,7 @@
                     android:id="@+id/assessmentEnd"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:hint="yyyy-MM-dd"/>
+                    android:hint="Double Tap for Date"/>
 
             </LinearLayout>
 
