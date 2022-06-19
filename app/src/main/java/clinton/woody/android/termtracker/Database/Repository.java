@@ -28,6 +28,7 @@ public class Repository {
     private List<Instructor> mAllInstructors;
     private List<Term> mAllTerms;
     private List<User> mAllUsers;
+    private User mUser;
 
 
     private static int NUMBER_OF_THREADS=4;
@@ -184,6 +185,19 @@ public class Repository {
     }
 
     //User
+    public User getUser(String search){
+        databaseExecutor.execute(()->{
+            mUser=mUserDAO.getUser(search);
+        });
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return mUser;
+    }
+
     public List<User>getAllUsers(){
         databaseExecutor.execute(()->{
             mAllUsers=mUserDAO.getAllUsers();

@@ -24,4 +24,7 @@ public interface UserDAO {
 
     @Query("SELECT * FROM users ORDER BY userID ASC")
     List<User> getAllUsers();
+
+    @Query("SELECT * FROM users WHERE userName LIKE :search")
+    User getUser(String search);
 }

@@ -26,7 +26,7 @@
         android:layout_margin="10dp"
         android:layout_marginLeft="16dp"
         android:layout_marginBottom="16dp"
-        android:onClick="toTerm"
+        android:onClick="toScreen"
         android:text="Term"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
