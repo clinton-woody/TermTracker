@@ -26,12 +26,19 @@ public class User {
 
     public static int greatestUser = 0;
 
-    public static int selectedUserID = 0;
-    public static String selectedName = "";
-    public static String selectedPassword = "ThisIsAnUnsetPassword!Q@W#E$R";//Only set this to prevent an unintended error that allows login without input of password.
-    public static Boolean selectedAdmin = false;
-    public static String selectedLastLogin = "";
-    public static Boolean selectedEnabled = false;
+    public static int activeUserID = 0;
+    public static String activeName = "";
+    public static String activePassword = "ThisIsAnUnsetPassword!Q@W#E$R";//Only set this to prevent an unintended error that allows login without input of password.
+    public static Boolean activeAdmin = false;
+    public static String activeLastLogin = "";
+    public static Boolean activeEnabled = false;
+
+    public static int targetUserID = 0;
+    public static String targetName;
+    public static String targetPassword;
+    public static Boolean targetAdmin;
+    public static String targetLastLogin;
+    public static Boolean targetEnabled;
 
 
     public User(int userID, String userName, String password, Boolean admin, String lastLogin, Boolean enabled) {

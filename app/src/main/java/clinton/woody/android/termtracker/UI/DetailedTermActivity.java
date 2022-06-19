@@ -18,6 +18,7 @@ import java.util.List;
 import clinton.woody.android.termtracker.Database.Repository;
 import clinton.woody.android.termtracker.Entity.Course;
 import clinton.woody.android.termtracker.Entity.Term;
+import clinton.woody.android.termtracker.Entity.User;
 import clinton.woody.android.termtracker.R;
 import clinton.woody.android.termtracker.DAO.TermDAO;
 
@@ -81,7 +82,7 @@ public class DetailedTermActivity extends AppCompatActivity {
                     Term.selectedTitle=editTitle.getText().toString();
                     Term.selectedStart=editStart.getText().toString();
                     Term.selectedEnd=editEnd.getText().toString();
-                    Term current=new Term(Term.selectedTerm, 1, Term.selectedTitle, Term.selectedStart, Term.selectedEnd);
+                    Term current=new Term(Term.selectedTerm, User.activeUserID, Term.selectedTitle, Term.selectedStart, Term.selectedEnd);
                     repository.insert(current);
                     DetailedTermActivity.title = null;
                     DetailedTermActivity.start = null;

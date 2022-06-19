@@ -40,28 +40,28 @@ public class LoginActivity extends MainActivity {
         repository = new Repository(getApplication());
         String checkerPassword = inputPassword.getText().toString(); //The app crashes here
         String selectedName = inputName.getText().toString(); //The app crashes here
-        User.selectedName = selectedName;
-        User user = repository.getUser(User.selectedName);
-        User.selectedUserID = user.getUserID();
-        User.selectedName = user.getUserName();
-        User.selectedPassword = user.getPassword();
-        User.selectedAdmin = user.getAdmin();
-        User.selectedEnabled = user.getEnabled();
-        User.selectedLastLogin = user.getLastLogin();
-        if (User.selectedEnabled == true) {
+        User.activeName = selectedName;
+        User user = repository.getUser(User.activeName);
+        User.activeUserID = user.getUserID();
+        User.activeName = user.getUserName();
+        User.activePassword = user.getPassword();
+        User.activeAdmin = user.getAdmin();
+        User.activeEnabled = user.getEnabled();
+        User.activeLastLogin = user.getLastLogin();
+        if (User.activeEnabled == true) {
 
-            if (User.selectedPassword.equals(checkerPassword)) {
+            if (User.activePassword.equals(checkerPassword)) {
 
-                if (User.selectedAdmin == true) {
-                    User.selectedLastLogin= user.timeStamper();
+                if (User.activeAdmin == true) {
+                    User.activeLastLogin= user.timeStamper();
                     Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
-                    User updateUser = new User(User.selectedUserID,User.selectedName, User.selectedPassword, User.selectedAdmin, User.selectedLastLogin, User.selectedEnabled);
+                    User updateUser = new User(User.activeUserID,User.activeName, User.activePassword, User.activeAdmin, User.activeLastLogin, User.activeEnabled);
                     repository.update(updateUser);
                     startActivity(intent);
                 } else {
-                    User.selectedLastLogin= user.timeStamper();
+                    User.activeLastLogin= user.timeStamper();
                     Intent intent = new Intent(LoginActivity.this, TermActivity.class);
-                    User updateUser = new User(User.selectedUserID,User.selectedName, User.selectedPassword, User.selectedAdmin, User.selectedLastLogin, User.selectedEnabled);
+                    User updateUser = new User(User.activeUserID,User.activeName, User.activePassword, User.activeAdmin, User.activeLastLogin, User.activeEnabled);
                     repository.update(updateUser);
                     startActivity(intent);
                 }
@@ -77,7 +77,7 @@ public class LoginActivity extends MainActivity {
             }
 
 
-        } else if (User.selectedUserID > 0 && User.selectedEnabled == false) {
+        } else if (User.activeUserID > 0 && User.activeEnabled == false) {
             //Make a popup that says "Account is not active"
             Context context = getApplicationContext();
             CharSequence text = "Account is not active.";
