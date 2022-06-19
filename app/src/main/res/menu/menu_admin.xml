@@ -1,4 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item android:title="Update User"
+        android:orderInCategory="100"
+        android:id="@+id/adminUpdate"/>
+
+    <item android:title="Search"
+        android:orderInCategory="100"
+        android:id="@+id/adminSearch"/>
+
+    <item android:title="Clear"
+        android:orderInCategory="100"
+        android:id="@+id/adminClear"/>
+
+    <item android:title="Last Login Report"
+        android:orderInCategory="100"
+        android:id="@+id/adminReport"/>
+
+    <item android:title="Logout"
+        android:orderInCategory="100"
+        android:id="@+id/adminLogout"/>
+
+
+
+
 </menu>

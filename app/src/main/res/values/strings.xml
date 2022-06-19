@@ -22,4 +22,19 @@
         <item>Performance</item>
         <item>Objective</item>
     </string-array>
+
+    <string-array name="search_list">
+        <item>Title</item>
+        <item>Enabled/Disabled</item>
+    </string-array>
+
+    <string-array name="enable_list">
+        <item>Disabled</item>
+        <item>Enabled</item>
+    </string-array>
+
+
+
+
+
 </resources>

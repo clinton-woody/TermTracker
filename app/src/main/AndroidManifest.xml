@@ -9,10 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TermTracker">
+        <activity
+            android:name=".UI.AdminAdapter"
+            android:exported="false" />
+
         <receiver
             android:name=".UI.MyReceiver1"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
 
         <activity
             android:name=".UI.LoginActivity"

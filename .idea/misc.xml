@@ -15,6 +15,7 @@
         <entry key="..\:/Users/DevAccount/AndroidStudioProjects/TermTracker/app/src/main/res/layout-land/main_landscape.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/DevAccount/AndroidStudioProjects/TermTracker/app/src/main/res/layout/activity_account.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/DevAccount/AndroidStudioProjects/TermTracker/app/src/main/res/layout/activity_admin.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/DevAccount/AndroidStudioProjects/TermTracker/app/src/main/res/layout/activity_admin_adapter.xml" value="0.24427083333333333" />
         <entry key="..\:/Users/DevAccount/AndroidStudioProjects/TermTracker/app/src/main/res/layout/activity_assessment.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/DevAccount/AndroidStudioProjects/TermTracker/app/src/main/res/layout/activity_authentication.xml" value="0.17395833333333333" />
         <entry key="..\:/Users/DevAccount/AndroidStudioProjects/TermTracker/app/src/main/res/layout/activity_course.xml" value="0.36666666666666664" />
@@ -26,6 +27,7 @@
         <entry key="..\:/Users/DevAccount/AndroidStudioProjects/TermTracker/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/DevAccount/AndroidStudioProjects/TermTracker/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/DevAccount/AndroidStudioProjects/TermTracker/app/src/main/res/layout/activity_term.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/DevAccount/AndroidStudioProjects/TermTracker/app/src/main/res/layout/admin_item.xml" value="0.1322463768115942" />
         <entry key="..\:/Users/DevAccount/AndroidStudioProjects/TermTracker/app/src/main/res/layout/assessment_item.xml" value="0.19427083333333334" />
         <entry key="..\:/Users/DevAccount/AndroidStudioProjects/TermTracker/app/src/main/res/layout/assessment_list_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/DevAccount/AndroidStudioProjects/TermTracker/app/src/main/res/layout/course_item.xml" value="0.19427083333333334" />

@@ -22,7 +22,6 @@ import clinton.woody.android.termtracker.Entity.User;
 import clinton.woody.android.termtracker.R;
 import clinton.woody.android.termtracker.DAO.TermDAO;
 
-
 public class DetailedTermActivity extends AppCompatActivity {
     private Repository repository;
     public static int id;
