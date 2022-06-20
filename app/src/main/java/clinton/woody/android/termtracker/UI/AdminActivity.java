@@ -106,21 +106,73 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
                     User.targetLastLogin="Never Logged In";
                     User.targetEnabled=false;
                     spinnerEnable.setSelection(0);
-                    //spinnerAdmin.setSelection(0);
+                    spinnerType.setSelection(0);
                     editUserName.setText(User.targetName);
                     editPassword.setText(User.targetPassword);
 
+                    repository=new Repository(getApplication());
+                    List<User> allUsers=repository.getAllUsers();
+                    RecyclerView recyclerView=findViewById(R.id.recyclerview_admin);
+                    final AdminAdapter adminAdapter=new AdminAdapter(this);
+                    recyclerView.setAdapter(adminAdapter);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                    adminAdapter.setUsers(allUsers);
+                    User.targetUserID=0;
                     return true;
+
                 }else{
+                    if (spinnerEnable.getSelectedItemPosition()==1){
+                        User.targetEnabled=true;
+                    }else{
+                        User.targetEnabled=false;
+                    }
 
+                    if (spinnerType.getSelectedItemPosition()==1){
+                        User.targetAdmin=true;
+                    }else{
+                        User.targetAdmin=false;
+                    }
+
+                    User.targetName=editUserName.getText().toString();
+                    User.targetPassword=editUserName.getText().toString();
+                    User user=new User(User.targetUserID, User.targetName, User.targetPassword, User.targetAdmin, User.targetLastLogin, User.targetEnabled);
+                    repository.update(user);
+                    User.targetName="";
+                    User.targetPassword="";
+                    User.targetAdmin=false;
+                    User.targetLastLogin="Never Logged In";
+                    User.targetEnabled=false;
+                    spinnerEnable.setSelection(0);
+                    spinnerType.setSelection(0);
+                    editUserName.setText(User.targetName);
+                    editPassword.setText(User.targetPassword);
+
+                    repository=new Repository(getApplication());
+                    List<User> allUsers=repository.getAllUsers();
+                    RecyclerView recyclerView=findViewById(R.id.recyclerview_admin);
+                    final AdminAdapter adminAdapter=new AdminAdapter(this);
+                    recyclerView.setAdapter(adminAdapter);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                    adminAdapter.setUsers(allUsers);
+                    User.targetUserID=0;
+                    return true;
                 }
-
-                return true;
 
             case R.id.adminSearch:
                 return true;
 
             case R.id.adminClear:
+
+                User.targetUserID=0;
+                User.targetName="";
+                User.targetPassword="";
+                User.targetAdmin=false;
+                User.targetLastLogin="Never Logged In";
+                User.targetEnabled=false;
+                spinnerEnable.setSelection(0);
+                spinnerType.setSelection(0);
+                editUserName.setText(User.targetName);
+                editPassword.setText(User.targetPassword);
                 return true;
 
             case R.id.adminReport:
