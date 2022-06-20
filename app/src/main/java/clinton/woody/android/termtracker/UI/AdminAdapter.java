@@ -60,7 +60,7 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.AdminViewHol
                         AdminActivity.spinnerType.setSelection(0);
                     }
                     AdminActivity.editUserName.setText(User.targetName);
-                    AdminActivity.editPassword.setText("Password Hidden");
+                    AdminActivity.editPassword.setText(User.targetPassword);
 
                 }
             });

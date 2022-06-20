@@ -45,6 +45,7 @@
                     android:id="@+id/loginPassword"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
+                    android:inputType="textPassword"
                     android:hint="Password" />
 
             </LinearLayout>

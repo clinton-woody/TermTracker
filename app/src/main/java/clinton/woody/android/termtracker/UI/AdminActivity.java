@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,11 +90,14 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
             case R.id.adminUpdate:
                 AdminAdapter.normal=true;
                 if(User.targetUserID==0){
+                    /*
                     if (spinnerEnable.getSelectedItemPosition()==1){
                         User.targetEnabled=true;
                     }else{
                         User.targetEnabled=false;
                     }
+                    */
+
 
                     if (spinnerType.getSelectedItemPosition()==1){
                         User.targetAdmin=true;
@@ -101,7 +106,7 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
                     }
 
                     User.targetName=editUserName.getText().toString();
-                    User.targetPassword=editUserName.getText().toString();
+                    User.targetPassword=editPassword.getText().toString();
                     User user=new User(User.targetUserID, User.targetName, User.targetPassword, User.targetAdmin, User.targetLastLogin, User.targetEnabled);
                     repository.insert(user);
                     User.targetName="";
@@ -113,6 +118,20 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
                     spinnerType.setSelection(0);
                     editUserName.setText(User.targetName);
                     editPassword.setText(User.targetPassword);
+                    if (User.targetPassword.equals("")){
+                        User.targetEnabled=false;
+                        Context context = getApplicationContext();
+                        CharSequence text = "Account disabled until password is assigned.";
+                        int duration = Toast.LENGTH_LONG;
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    }else{
+                        if (spinnerEnable.getSelectedItemPosition()==1){
+                            User.targetEnabled=true;
+                        }else{
+                            User.targetEnabled=false;
+                        }
+                    }
 
                     repository=new Repository(getApplication());
                     List<User> allUsers=repository.getAllUsers();
@@ -125,11 +144,13 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
                     return true;
 
                 }else{
+                    /*
                     if (spinnerEnable.getSelectedItemPosition()==1){
                         User.targetEnabled=true;
                     }else{
                         User.targetEnabled=false;
                     }
+                    */
 
                     if (spinnerType.getSelectedItemPosition()==1){
                         User.targetAdmin=true;
@@ -138,7 +159,21 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
                     }
 
                     User.targetName=editUserName.getText().toString();
-                    User.targetPassword=editUserName.getText().toString();
+                    User.targetPassword=editPassword.getText().toString();
+                    if (User.targetPassword.equals("")){
+                        User.targetEnabled=false;
+                        Context context = getApplicationContext();
+                        CharSequence text = "Account disabled until password is assigned.";
+                        int duration = Toast.LENGTH_LONG;
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    }else{
+                        if (spinnerEnable.getSelectedItemPosition()==1){
+                            User.targetEnabled=true;
+                        }else{
+                            User.targetEnabled=false;
+                        }
+                    }
                     User user=new User(User.targetUserID, User.targetName, User.targetPassword, User.targetAdmin, User.targetLastLogin, User.targetEnabled);
                     repository.update(user);
                     User.targetName="";

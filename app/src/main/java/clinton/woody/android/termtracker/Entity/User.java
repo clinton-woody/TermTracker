@@ -1,5 +1,6 @@
 package clinton.woody.android.termtracker.Entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
