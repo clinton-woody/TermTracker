@@ -75,9 +75,54 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
+
+            case R.id.adminUpdate:
+                if(User.targetUserID==0){
+                    if (spinnerEnable.getSelectedItemPosition()==1){
+                        User.targetEnabled=true;
+                    }else{
+                        User.targetEnabled=false;
+                    }
+                    /*
+                    if (spinnerAdmin.getSelectedItemPosition()==1){
+                        User.targetAdmin=true;
+                    }else{
+                        User.targetAdmin=false;
+                    }
+                    */
+                    User.targetName=editUserName.getText().toString();
+                    User.targetPassword=editUserName.getText().toString();
+                    User user=new User(User.targetUserID, User.targetName, User.targetPassword, User.targetAdmin, User.targetLastLogin, User.targetEnabled);
+                    repository.insert(user);
+                    User.targetName="";
+                    User.targetPassword="";
+                    User.targetAdmin=false;
+                    User.targetLastLogin="";
+                    User.targetEnabled=false;
+                    spinnerEnable.setSelection(0);
+                    //spinnerAdmin.setSelection(0);
+                    editUserName.setText(User.targetName);
+                    editPassword.setText(User.targetPassword);
+
+                    return true;
+                }else{
+
+                }
+
                 return true;
+
+            case R.id.adminSearch:
+                return true;
+
+            case R.id.adminClear:
+                return true;
+
+            case R.id.adminReport:
+                return true;
+
+            case R.id.adminLogout:
+                return true;
+
         }
         return super.onOptionsItemSelected(item);
     }

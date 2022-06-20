@@ -9,9 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TermTracker">
-        <activity
-            android:name=".UI.AdminAdapter"
-            android:exported="false" />
 
         <receiver
             android:name=".UI.MyReceiver1"
@@ -21,12 +18,12 @@
         <activity
             android:name=".UI.LoginActivity"
             android:exported="false"
-            android:label="Login Screen"
+            android:label="Login Screen" />
             android:parentActivityName=".UI.MainActivity" />
         <activity
             android:name=".UI.AdminActivity"
             android:exported="false"
-            android:label="Admin Screen"
+            android:label="Admin Screen" />
             android:parentActivityName=".UI.LoginActivity" />
         <activity
             android:name=".UI.AccountActivity"
@@ -61,7 +58,7 @@
         <activity
             android:name=".UI.TermActivity"
             android:exported="false"
-            android:label="Term Screen"
+            android:label="Term Screen"/>
             android:parentActivityName=".UI.MainActivity" />
         <activity
             android:name=".UI.MainActivity"

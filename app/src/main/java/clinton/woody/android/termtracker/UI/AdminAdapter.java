@@ -89,8 +89,7 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.AdminViewHol
                 holder.adminItemView2.setText("Disabled");
             }
 
-        }
-        else{
+        }else{
             holder.adminItemView1.setText("No User");
             holder.adminItemView2.setText("No User");
         }
