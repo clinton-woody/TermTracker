@@ -30,7 +30,7 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
     public static Spinner spinnerSearch;
     public static EditText editUserName;
     public static EditText editPassword;
-    public static SearchView search;
+    public static SearchView searchView;
 
     public static int idU;
     public static String nameU;
@@ -38,10 +38,12 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
     public static Boolean adminU;
     public static String lastLoginU;
     public static Boolean enabledU;
+    public static Boolean searchBoolean=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AdminAdapter.normal=true;
         User.targetUserID = 0;
         setContentView(R.layout.activity_admin);
         editUserName=findViewById(R.id.userName);
@@ -49,7 +51,7 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
         spinnerEnable=findViewById(R.id.enabledStatus);
         spinnerSearch=findViewById(R.id.searchSpinner);
         spinnerType=findViewById(R.id.userType);
-        search=findViewById(R.id.search);
+        searchView=findViewById(R.id.search);
 
         repository=new Repository(getApplication());
         List<User> allUsers= repository.getAllUsers();
@@ -84,6 +86,7 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
         switch (item.getItemId()) {
 
             case R.id.adminUpdate:
+                AdminAdapter.normal=true;
                 if(User.targetUserID==0){
                     if (spinnerEnable.getSelectedItemPosition()==1){
                         User.targetEnabled=true;
@@ -160,10 +163,42 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
                 }
 
             case R.id.adminSearch:
-                return true;
+                AdminAdapter.normal=true;
+                if(spinnerSearch.getSelectedItemPosition()==0){
+                    String searchString=searchView.getQuery().toString();
+                    repository=new Repository(getApplication());
+                    List<User> filteredUsers=repository.searchName("%"+searchString+"%");
+                    RecyclerView recyclerView=findViewById(R.id.recyclerview_admin);
+                    final AdminAdapter adminAdapter=new AdminAdapter(this);
+                    recyclerView.setAdapter(adminAdapter);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                    adminAdapter.setUsers(filteredUsers);
+                    return true;
+                }else{
+                    repository=new Repository(getApplication());
+                    List<User> filteredUsers;
+                    if(searchView.getQuery().toString().equals("enabled")||searchView.getQuery().toString().equals("Enabled")){
+                        filteredUsers=repository.searchEnabled(true);
+                        RecyclerView recyclerView=findViewById(R.id.recyclerview_admin);
+                        final AdminAdapter adminAdapter=new AdminAdapter(this);
+                        recyclerView.setAdapter(adminAdapter);
+                        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                        adminAdapter.setUsers(filteredUsers);
+                        return true;
+                    }else if(searchView.getQuery().toString().equals("disabled")||searchView.getQuery().toString().equals("Disabled")){
+                        filteredUsers=repository.searchEnabled(false);
+                        RecyclerView recyclerView=findViewById(R.id.recyclerview_admin);
+                        final AdminAdapter adminAdapter=new AdminAdapter(this);
+                        recyclerView.setAdapter(adminAdapter);
+                        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                        adminAdapter.setUsers(filteredUsers);
+                        return true;
+                    }
+
+                }
 
             case R.id.adminClear:
-
+                AdminAdapter.normal=true;
                 User.targetUserID=0;
                 User.targetName="";
                 User.targetPassword="";
@@ -175,9 +210,27 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
                 editUserName.setText(User.targetName);
                 editPassword.setText(User.targetPassword);
 
+                repository=new Repository(getApplication());
+                List<User> allUsers=repository.getAllUsers();
+                RecyclerView recyclerView=findViewById(R.id.recyclerview_admin);
+                final AdminAdapter adminAdapter=new AdminAdapter(this);
+                recyclerView.setAdapter(adminAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                adminAdapter.setUsers(allUsers);
+                User.targetUserID=0;
                 return true;
 
+
             case R.id.adminReport:
+                AdminAdapter.normal=false;
+                repository=new Repository(getApplication());
+                List<User> reportUsers;
+                reportUsers=repository.getReport();
+                recyclerView=findViewById(R.id.recyclerview_admin);
+                final AdminAdapter adminAdapter2=new AdminAdapter(this);
+                recyclerView.setAdapter(adminAdapter2);
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                adminAdapter2.setUsers(reportUsers);
                 return true;
 
             case R.id.adminLogout:

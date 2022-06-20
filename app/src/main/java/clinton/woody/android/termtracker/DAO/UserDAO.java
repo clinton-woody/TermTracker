@@ -27,4 +27,13 @@ public interface UserDAO {
 
     @Query("SELECT * FROM users WHERE userName LIKE :search")
     User getUser(String search);
+
+    @Query("SELECT * FROM users WHERE userName LIKE :search")
+    List<User> searchName(String search);
+
+    @Query("SELECT * FROM users WHERE enabled IS :search")
+    List<User> searchEnabled(Boolean search);
+
+    @Query("SELECT * FROM users ORDER BY lastLogin DESC")
+    List<User> report();
 }

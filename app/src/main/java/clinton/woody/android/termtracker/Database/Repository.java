@@ -28,6 +28,7 @@ public class Repository {
     private List<Instructor> mAllInstructors;
     private List<Term> mAllTerms;
     private List<User> mAllUsers;
+    private List<User> mFilteredUsers;
     private User mUser;
 
 
@@ -203,6 +204,43 @@ public class Repository {
             mAllUsers=mUserDAO.getAllUsers();
         });
 
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return mAllUsers;
+    }
+
+    public List<User>searchEnabled(Boolean search){
+        databaseExecutor.execute(()->{
+            mFilteredUsers=mUserDAO.searchEnabled(search);
+        });
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return mFilteredUsers;
+    }
+
+    public List<User>searchName(String search){
+        databaseExecutor.execute(()->{
+            mFilteredUsers=mUserDAO.searchName(search);
+        });
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return mFilteredUsers;
+    }
+
+    public List<User>getReport(){
+        databaseExecutor.execute(()->{
+            mAllUsers=mUserDAO.report();
+        });
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {

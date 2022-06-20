@@ -17,11 +17,12 @@ import clinton.woody.android.termtracker.Entity.User;
 import clinton.woody.android.termtracker.R;
 
 public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.AdminViewHolder> {
-
+    public static Boolean normal = true;
 
     class AdminViewHolder extends RecyclerView.ViewHolder{
         private final TextView adminItemView1;
         private final TextView adminItemView2;
+
         private AdminViewHolder(View itemView){
 
             super(itemView);
@@ -83,21 +84,34 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.AdminViewHol
 
     @Override
     public void onBindViewHolder(@NonNull AdminAdapter.AdminViewHolder holder, int position) {
-        if(mUsers!=null){
 
-            User current=mUsers.get(position);
-            String userName=current.getUserName();
-            holder.adminItemView1.setText(userName);
-            Boolean enabled=current.getEnabled();
-            if (enabled == true){
-                holder.adminItemView2.setText("Enabled");
+        if(normal==true){
+            if(mUsers!=null){
+                User current=mUsers.get(position);
+                String userName=current.getUserName();
+                holder.adminItemView1.setText(userName);
+                Boolean enabled=current.getEnabled();
+                if (enabled == true){
+                    holder.adminItemView2.setText("Enabled");
+                }else{
+                    holder.adminItemView2.setText("Disabled");
+                }
             }else{
-                holder.adminItemView2.setText("Disabled");
+                holder.adminItemView1.setText("No User");
+                holder.adminItemView2.setText("No User");
+            }
+        }else if(normal==false){
+            if(mUsers!=null){
+                User current=mUsers.get(position);
+                String userName=current.getUserName();
+                holder.adminItemView1.setText(userName);
+                String lastLogin=current.getLastLogin();
+                holder.adminItemView2.setText(lastLogin);
+             }else{
+                holder.adminItemView1.setText("No User");
+                holder.adminItemView2.setText("No User");
             }
 
-        }else{
-            holder.adminItemView1.setText("No User");
-            holder.adminItemView2.setText("No User");
         }
 
     }
