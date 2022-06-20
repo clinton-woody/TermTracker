@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -173,12 +174,22 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
                 spinnerType.setSelection(0);
                 editUserName.setText(User.targetName);
                 editPassword.setText(User.targetPassword);
+
                 return true;
 
             case R.id.adminReport:
                 return true;
 
             case R.id.adminLogout:
+                User.activeUserID = 0;
+                User.activeName = "Something Went Wrong";
+                User.activePassword = "ThisIsAnUnsetPassword!Q@W#E$R";//Only set this to prevent an unintended error that allows login without input of password.
+                User.activeAdmin = false;
+                User.activeLastLogin = "Something Went Wrong";
+                User.activeEnabled = false;
+                Intent intent=new Intent(AdminActivity.this,LoginActivity.class);
+                startActivity(intent);
+                this.finish();
                 return true;
 
         }

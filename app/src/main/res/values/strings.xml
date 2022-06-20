@@ -24,7 +24,7 @@
     </string-array>
 
     <string-array name="search_list">
-        <item>Title</item>
+        <item>User Name</item>
         <item>Enabled/Disabled</item>
     </string-array>
 
