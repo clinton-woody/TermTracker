@@ -30,6 +30,13 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
     public static EditText editPassword;
     public static SearchView search;
 
+    public static int idU;
+    public static String nameU;
+    public static String passwordU;
+    public static Boolean adminU;
+    public static String lastLoginU;
+    public static Boolean enabledU;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

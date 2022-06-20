@@ -33,6 +33,7 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.AdminViewHol
                 public void onClick(View view) {
                     int position=getAdapterPosition();
                     final User current=mUsers.get(position);
+
                     User.targetUserID=current.getUserID();
                     User.targetName=current.getUserName();
                     User.targetPassword=current.getPassword();
@@ -40,18 +41,21 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.AdminViewHol
                     User.targetLastLogin=current.getLastLogin();
                     User.targetEnabled=current.getEnabled();
 
+                    AdminActivity.idU=current.getUserID();
+                    AdminActivity.nameU=current.getUserName();
+                    AdminActivity.passwordU=current.getPassword();
+                    AdminActivity.adminU=current.getAdmin();
+                    AdminActivity.lastLoginU=current.getLastLogin();
+                    AdminActivity.enabledU=current.getEnabled();
 
-                    /*
-                    DetailedTermActivity.title=current.getTitle();
-                    DetailedTermActivity.selectedTitle.setText(DetailedTermActivity.title);
-                    DetailedTermActivity.editTitle.setText(DetailedTermActivity.title);
-                    DetailedTermActivity.start=current.getStart();
-                    DetailedTermActivity.selectedStart.setText(DetailedTermActivity.start);
-                    DetailedTermActivity.editStart.setText(DetailedTermActivity.start);
-                    DetailedTermActivity.end=current.getEnd();
-                    DetailedTermActivity.selectedEnd.setText(DetailedTermActivity.end);
-                    DetailedTermActivity.editEnd.setText(DetailedTermActivity.end);
-                    */
+                    if (User.targetEnabled == true) {
+                        AdminActivity.spinnerEnable.setSelection(1);
+                    }else{
+                        AdminActivity.spinnerEnable.setSelection(0);
+                    }
+                    AdminActivity.editUserName.setText(User.targetName);
+                    AdminActivity.editPassword.setText("Password Hidden");
+
                 }
             });
         }
