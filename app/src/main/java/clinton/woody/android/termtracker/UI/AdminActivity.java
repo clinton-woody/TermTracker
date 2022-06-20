@@ -25,6 +25,7 @@ import clinton.woody.android.termtracker.R;
 public class AdminActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private Repository repository;
     public static Spinner spinnerEnable;
+    public static Spinner spinnerType;
     public static Spinner spinnerSearch;
     public static EditText editUserName;
     public static EditText editPassword;
@@ -46,6 +47,7 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
         editPassword=findViewById(R.id.userPassword);
         spinnerEnable=findViewById(R.id.enabledStatus);
         spinnerSearch=findViewById(R.id.searchSpinner);
+        spinnerType=findViewById(R.id.userType);
         search=findViewById(R.id.search);
 
         repository=new Repository(getApplication());
@@ -65,6 +67,10 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSearch.setAdapter(adapter2);
         spinnerSearch.setOnItemSelectedListener(this);
+        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.admin_list, android.R.layout.simple_spinner_item );
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerType.setAdapter(adapter3);
+        spinnerType.setOnItemSelectedListener(this);
 
     }
 
@@ -83,13 +89,13 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
                     }else{
                         User.targetEnabled=false;
                     }
-                    /*
-                    if (spinnerAdmin.getSelectedItemPosition()==1){
+
+                    if (spinnerType.getSelectedItemPosition()==1){
                         User.targetAdmin=true;
                     }else{
                         User.targetAdmin=false;
                     }
-                    */
+
                     User.targetName=editUserName.getText().toString();
                     User.targetPassword=editUserName.getText().toString();
                     User user=new User(User.targetUserID, User.targetName, User.targetPassword, User.targetAdmin, User.targetLastLogin, User.targetEnabled);
@@ -97,7 +103,7 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
                     User.targetName="";
                     User.targetPassword="";
                     User.targetAdmin=false;
-                    User.targetLastLogin="";
+                    User.targetLastLogin="Never Logged In";
                     User.targetEnabled=false;
                     spinnerEnable.setSelection(0);
                     //spinnerAdmin.setSelection(0);

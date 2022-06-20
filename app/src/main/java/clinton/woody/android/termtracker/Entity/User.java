@@ -27,18 +27,18 @@ public class User {
     public static int greatestUser = 0;
 
     public static int activeUserID = 0;
-    public static String activeName = "";
+    public static String activeName = "Something Went Wrong";
     public static String activePassword = "ThisIsAnUnsetPassword!Q@W#E$R";//Only set this to prevent an unintended error that allows login without input of password.
     public static Boolean activeAdmin = false;
-    public static String activeLastLogin = "";
+    public static String activeLastLogin = "Something Went Wrong";
     public static Boolean activeEnabled = false;
 
     public static int targetUserID = 0;
-    public static String targetName;
-    public static String targetPassword;
-    public static Boolean targetAdmin;
-    public static String targetLastLogin;
-    public static Boolean targetEnabled;
+    public static String targetName="";
+    public static String targetPassword="";
+    public static Boolean targetAdmin=false;
+    public static String targetLastLogin="Never Logged In";
+    public static Boolean targetEnabled=false;
 
 
     public User(int userID, String userName, String password, Boolean admin, String lastLogin, Boolean enabled) {

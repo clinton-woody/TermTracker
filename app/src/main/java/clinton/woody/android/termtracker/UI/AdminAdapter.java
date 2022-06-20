@@ -53,6 +53,11 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.AdminViewHol
                     }else{
                         AdminActivity.spinnerEnable.setSelection(0);
                     }
+                    if (User.targetAdmin == true) {
+                        AdminActivity.spinnerType.setSelection(1);
+                    }else{
+                        AdminActivity.spinnerType.setSelection(0);
+                    }
                     AdminActivity.editUserName.setText(User.targetName);
                     AdminActivity.editPassword.setText("Password Hidden");
 
@@ -68,6 +73,7 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.AdminViewHol
         mInflater=LayoutInflater.from(context);
         this.context=context;
     }
+
     @NonNull
     @Override
     public AdminAdapter.AdminViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -95,6 +101,7 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.AdminViewHol
         }
 
     }
+
     public void setUsers(List<User> users) {
         mUsers=users;
         notifyDataSetChanged();
