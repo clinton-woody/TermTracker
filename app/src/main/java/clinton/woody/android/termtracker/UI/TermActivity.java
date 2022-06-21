@@ -12,31 +12,39 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import clinton.woody.android.termtracker.DAO.TermDAO;
 import clinton.woody.android.termtracker.Database.Repository;
+import clinton.woody.android.termtracker.Entity.Course;
 import clinton.woody.android.termtracker.Entity.Term;
+import clinton.woody.android.termtracker.Entity.User;
 import clinton.woody.android.termtracker.R;
 
 public class TermActivity extends AppCompatActivity {
     private Repository repository;
+    int userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term);
+        userID = User.activeUserID;//
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         repository=new Repository(getApplication());
 
-        List<Term> allTerms= repository.getAllTerms();
+        List<Term> filteredTerms=new ArrayList<>();
+        for (Term t:repository.getAllTerms()){
+            if(t.getUserID()==userID)filteredTerms.add(t);
+        }
 
         RecyclerView recyclerView=findViewById(R.id.recyclerview_term);
         final TermAdapter termAdapter=new TermAdapter(this);
         recyclerView.setAdapter(termAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        termAdapter.setTerms(allTerms);
+        termAdapter.setTerms(filteredTerms);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

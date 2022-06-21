@@ -24,6 +24,7 @@ import clinton.woody.android.termtracker.DAO.TermDAO;
 
 public class DetailedTermActivity extends AppCompatActivity {
     private Repository repository;
+    int userID;
     public static int id;
     public static String title;
     public static String start;
@@ -52,12 +53,15 @@ public class DetailedTermActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//added, may not be needed
         repository=new Repository(getApplication());
-        List<Term> allTerms= repository.getAllTerms();
+        List<Term> filteredTerms=new ArrayList<>();
+        for (Term t:repository.getAllTerms()){
+            if(t.getUserID()==userID)filteredTerms.add(t);
+        }
         RecyclerView recyclerView=findViewById(R.id.recyclerview_detailedTerm);
         final DetailedTermAdapter detailedTermAdapter=new DetailedTermAdapter(this);
         recyclerView.setAdapter(detailedTermAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        detailedTermAdapter.setTerms(allTerms);
+        detailedTermAdapter.setTerms(filteredTerms);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -93,12 +97,15 @@ public class DetailedTermActivity extends AppCompatActivity {
                     selectedEnd.setText(end);
                     editEnd.setText(end);
                     repository=new Repository(getApplication());
-                    List<Term> allTerms=repository.getAllTerms();
+                    List<Term> filteredTerms=new ArrayList<>();
+                    for (Term t:repository.getAllTerms()){
+                        if(t.getUserID()==userID)filteredTerms.add(t);
+                    }
                     RecyclerView recyclerView=findViewById(R.id.recyclerview_detailedTerm);
                     final DetailedTermAdapter detailedTermAdapter=new DetailedTermAdapter(this);
                     recyclerView.setAdapter(detailedTermAdapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(this));
-                    detailedTermAdapter.setTerms(allTerms);
+                    detailedTermAdapter.setTerms(filteredTerms);
                 }else{
                     Term.selectedTitle=editTitle.getText().toString();
                     Term.selectedStart=editStart.getText().toString();
@@ -115,12 +122,15 @@ public class DetailedTermActivity extends AppCompatActivity {
                     selectedEnd.setText(end);
                     editEnd.setText(end);
                     repository=new Repository(getApplication());
-                    List<Term> allTerms=repository.getAllTerms();
+                    List<Term> filteredTerms=new ArrayList<>();
+                    for (Term t:repository.getAllTerms()){
+                        if(t.getUserID()==userID)filteredTerms.add(t);
+                    }
                     RecyclerView recyclerView=findViewById(R.id.recyclerview_detailedTerm);
                     final DetailedTermAdapter detailedTermAdapter=new DetailedTermAdapter(this);
                     recyclerView.setAdapter(detailedTermAdapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(this));
-                    detailedTermAdapter.setTerms(allTerms);
+                    detailedTermAdapter.setTerms(filteredTerms);
                     Term.selectedTerm = 0;
                 }
 
@@ -142,12 +152,15 @@ public class DetailedTermActivity extends AppCompatActivity {
                 }
 
                 repository=new Repository(getApplication()); // These 7 lines are the Recycler View Updater
-                List<Term> allTerms=repository.getAllTerms();
+                List<Term> filteredTerms=new ArrayList<>();
+                for (Term t:repository.getAllTerms()){
+                    if(t.getUserID()==userID)filteredTerms.add(t);
+                }
                 RecyclerView recyclerView=findViewById(R.id.recyclerview_detailedTerm);
                 final DetailedTermAdapter detailedTermAdapter=new DetailedTermAdapter(this);
                 recyclerView.setAdapter(detailedTermAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
-                detailedTermAdapter.setTerms(allTerms);
+                detailedTermAdapter.setTerms(filteredTerms);
 
                 Term.selectedTerm = 0; //This resets the selectedTerm to new mode
                 title = null;
