@@ -43,6 +43,7 @@ public class DetailedTermActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Term.selectedTerm = 0;
+        userID = User.activeUserID;
         setContentView(R.layout.activity_detailed_term);
         editTitle=findViewById(R.id.termTitle);
         editStart=findViewById(R.id.termStart);
