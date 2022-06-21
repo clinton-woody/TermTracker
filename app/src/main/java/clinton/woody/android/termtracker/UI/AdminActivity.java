@@ -107,17 +107,6 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
 
                     User.targetName=editUserName.getText().toString();
                     User.targetPassword=editPassword.getText().toString();
-                    User user=new User(User.targetUserID, User.targetName, User.targetPassword, User.targetAdmin, User.targetLastLogin, User.targetEnabled);
-                    repository.insert(user);
-                    User.targetName="";
-                    User.targetPassword="";
-                    User.targetAdmin=false;
-                    User.targetLastLogin="Never Logged In";
-                    User.targetEnabled=false;
-                    spinnerEnable.setSelection(0);
-                    spinnerType.setSelection(0);
-                    editUserName.setText(User.targetName);
-                    editPassword.setText(User.targetPassword);
                     if (User.targetPassword.equals("")){
                         User.targetEnabled=false;
                         Context context = getApplicationContext();
@@ -132,6 +121,18 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
                             User.targetEnabled=false;
                         }
                     }
+
+                    User user=new User(User.targetUserID, User.targetName, User.targetPassword, User.targetAdmin, User.targetLastLogin, User.targetEnabled);
+                    repository.insert(user);
+                    User.targetName="";
+                    User.targetPassword="";
+                    User.targetAdmin=false;
+                    User.targetLastLogin="Never Logged In";
+                    User.targetEnabled=false;
+                    spinnerEnable.setSelection(0);
+                    spinnerType.setSelection(0);
+                    editUserName.setText(User.targetName);
+                    editPassword.setText(User.targetPassword);
 
                     repository=new Repository(getApplication());
                     List<User> allUsers=repository.getAllUsers();
